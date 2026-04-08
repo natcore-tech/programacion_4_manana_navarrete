@@ -1,0 +1,77 @@
+# ==========================================
+# General / Sistema Operativo
+# ==========================================
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+**/Thumbs.db
+**/*.log
+**/*.tmp
+**/*.swp
+
+# ==========================================
+# IDEs (VS Code, IntelliJ, Android Studio)
+# ==========================================
+**/.vscode/
+**/.idea/
+**/*.iml
+**/*.iws
+**/.project
+**/.classpath
+**/.settings/
+**/*.sublime-project
+**/*.sublime-workspace
+
+# ==========================================
+# React Native / Node.js
+# ==========================================
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# iOS específico (React Native / Flutter)
+**/ios/Pods/
+**/ios/build/
+**/ios/.xccheckout
+**/ios/*.xcworkspace/xcuserdata/
+**/ios/*.xcodeproj/xcuserdata/
+**/DerivedData/
+
+# ==========================================
+# Flutter
+# ==========================================
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/build/
+
+# ==========================================
+# Android / Kotlin
+# ==========================================
+**/.gradle/
+**/local.properties
+**/*.apk
+**/*.ap_
+**/*.aab
+**/*.dex
+
+# Carpetas de compilación de Android (Estructura estándar)
+**/android/app/build/
+**/android/build/
+**/bin/
+**/gen/
+**/out/
+
+# Archivos de captura y trazas de depuración
+**/*.stackdump
+**/capture.pcap
+**/*.hprof
