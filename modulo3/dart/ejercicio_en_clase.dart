@@ -15,7 +15,7 @@ void main() {
     print('Desea terminar el bucle 1 o 0:');
     int terminar = int.parse(stdin.readLineSync()!);
 
-    if (terminar == 1) {
+    if (terminar ==  1) {
         break;
     };
     
