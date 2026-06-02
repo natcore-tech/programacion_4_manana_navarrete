@@ -1,7 +1,7 @@
 fun main() {
     
     //readline
-    println("Operadores Comparacion ")
+    println("Operaciones que se realizan con las notas ")
 	val numero1 = 10
 	val numero2 = 2
 

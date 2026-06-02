@@ -1,25 +1,23 @@
 
 
 fun main() {
-  println("Controles de Flujo when con condiciones arbitrarias")
-  println("Escriba codigo: ")
-  println("Edad del paciente: ")
-  val edadPaciente=readLine()?.toIntOrNull()?:0
-  println("Tiene seguro: ")
-  val tieneSeguro=readLine()?.trim()?.lowercase()=="s"
-  val nivelSeguro= if(tieneSeguro){
-      println("Nivel de seguro (BASICO/INTERMEDIO/PREMIUM): ")
+  println("Sistema de registro de notas")
+  println("Nota obtenida: ")
+  val nota=readLine()?.toIntOrNull()?:0
+  println("Es examen recuperatorio (s/n): ")
+  val recuperatorio=readLine()?.trim()?.lowercase()=="s"
+  val tipoRecuperatorio= if(recuperatorio){
+      println("Tipo de recuperatorio (PARCIAL/FINAL/ORAL): ")
       readLine()?.trim()?.uppercase()?:""
   } else ""
-  val copago = when{
-      !tieneSeguro && edadPaciente <18->0.0<18->0.0
-      !tieneSeguro && edadPaciente >=65->15.0
-      !tieneSeguro ->45.0
-      nivelSeguro=="BASICO"->20.0
-      nivelSeguro=="INTERMEDIO"->10.0
-      nivelSeguro=="PREMIUM"->0.0
-      else -> 30.0
-      
+  val notaFinal = when{
+      !recuperatorio && nota <50 -> 0.0
+      !recuperatorio && nota >=90 -> 100.0
+      !recuperatorio -> nota.toDouble()
+      tipoRecuperatorio=="PARCIAL"-> (nota + 10).coerceAtMost(100).toDouble()
+      tipoRecuperatorio=="FINAL"-> (nota + 20).coerceAtMost(100).toDouble()
+      tipoRecuperatorio=="ORAL"-> (nota + 5).coerceAtMost(100).toDouble()
+      else -> nota.toDouble()
   }
-  println("Copago: $${"%.2f".format(copago)}")
+  println("Nota final: ${"%.2f".format(notaFinal)}")
 }

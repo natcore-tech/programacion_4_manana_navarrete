@@ -1,12 +1,12 @@
 fun main() {
     
     //readline
-    println("Operadores Aritmeticos ")
-	println("Escribe numero1 : ")
+    println("Operaciones realizadas con las notas ")
+	println("Escribe la nota 1 : ")
 	val numero1 = readLine()?.toInt() ?: 0
 
 
-    println("Escribe numero2 : ")
+    println("Escribe la nota 2 : ")
 	val numero2 = readLine()?.toInt() ?: 0
 
     println("Suma")
@@ -28,9 +28,9 @@ fun main() {
     x-=3
     println("x-=3 $x")
     x*=6
-    println("x*=5 $x")
+    println("x*=6 $x")
     x/=2
-    println("x/=5 $x")
+    println("x/=2 $x")
     x%=2
     println("x%=2 $x")
     

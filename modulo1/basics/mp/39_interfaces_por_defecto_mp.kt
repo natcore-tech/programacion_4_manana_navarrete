@@ -9,44 +9,43 @@ interface Validable {
     val esValido: Boolean get() = errores.isEmpty()
 
     fun validar(): Boolean
-    fun imprimirErrores() {                // implementación por defecto
-        if (errores.isEmpty()) println("Sin errores")
-        else errores.forEach { println("  ❌ $it") }
+    fun imprimirErrores() {
+        if (errores.isEmpty()) println("Sin errores de registro")
+        else errores.forEach { println("- Error: $it") }
     }
 }
 
 // POLIMORFISMO: Pedido puede usarse donde se espere Serializable O Validable
-data class Pedido(
+data class RegistroNota(
     override val id: String,
-    val cliente:     String,
-    val items:       List<String>,
-    val total:       Double
+    val alumno: String,
+    val notas: List<Double>
 ) : Serializable, Validable {
 
     override fun serializar() =
-        "$id|$cliente|${items.joinToString(",")}|$total"
+        "$id|$alumno|${notas.joinToString(",")}|${if (notas.isEmpty()) 0.0 else notas.average()}"
 
     override val errores: List<String> get() = buildList {
-        if (cliente.isBlank()) add("El cliente no puede estar vacío")
-        if (items.isEmpty())   add("El pedido debe tener al menos un item")
-        if (total <= 0)        add("El total debe ser mayor que cero")
+        if (alumno.isBlank()) add("El nombre del alumno no puede estar vacío")
+        if (notas.isEmpty()) add("Debe registrar al menos una nota")
+        if (notas.any { it < 0.0 || it > 10.0 }) add("Las notas deben estar entre 0.0 y 10.0")
     }
 
     override fun validar() = esValido
 }
 
 fun main() {
-    val pedido1 = Pedido("P001", "Ana", listOf("Teclado", "Mouse"), 119.98)
-    val pedido2 = Pedido("P002", "",    emptyList(),                -5.0)
+    val registro1 = RegistroNota("R001", "Ana", listOf(8.5, 9.0, 7.0))
+    val registro2 = RegistroNota("R002", "",    emptyList())
 
     // Polimorfismo por interfaz
-    fun procesarSerializable(s: Serializable) = println("→ ${s.serializar()}")
+    fun procesarSerializable(s: Serializable) = println("Serializado: ${s.serializar()}")
     fun procesarValidable(v: Validable) {
-        println("Válido: ${v.esValido}")
+        println("Estado válido: ${v.esValido}")
         v.imprimirErrores()
     }
 
-    procesarSerializable(pedido1)   // → P001|Ana|Teclado,Mouse|119.98
-    procesarValidable(pedido1)      // Válido: true / Sin errores
-    procesarValidable(pedido2)      // Válido: false / ❌ ...
+    procesarSerializable(registro1)
+    procesarValidable(registro1)
+    procesarValidable(registro2)
 }

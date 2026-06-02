@@ -1,29 +1,29 @@
 
 
 fun main() {
-  println("Controles de Flujo")
-  println("Condicional If - Anidado")
-  println("Tiene antecedentes cardiacos?")
+  println("Registro de Notas")
+  println("Ingreso de Calificaciones")
+  println("Nombre del estudiante?")
   val tieneAntecedentes=readLine()?.trim()?.lowercase()?:0
-  println("Frecuencia cardiaca (lpm)")
+  println("Nota (0-100)")
   val frecuencia=readLine()?.toIntOrNull()?:0
   
   if(tieneAntecedentes){
-      println("Paciente con antecedentes cardiacos")
+      println("Estudiante registrado")
       if(frecuencia<50){
-        println("Bradicardia Severa")
-      } else if(frecuencia>100){
-          println("Taquicardia")
+        println("Reprobado")
+      } else if(frecuencia>85){
+          println("Sobresaliente")
       } else {
-        println("Frecuencia Normal")
+        println("Aprobado")
       }
       
-  } else {
-      println("Paciente sin antecedentes cardiacos")
+    } else {
+      println("Estudiante no registrado")
       if(frecuencia<50 || frecuencia > 100){
-          println("Frecuencia fuera del rango normal")
+        println("Nota fuera de rango")
       } else {
-          println("Frecuencia Cardiaca Normal")
+        println("Nota aceptable")
       }
   
     }

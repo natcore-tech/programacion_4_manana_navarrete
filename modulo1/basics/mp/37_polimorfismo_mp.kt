@@ -1,49 +1,44 @@
-// La interfaz define el contrato — QUÉ puede hacer
-// Las implementaciones definen el CÓMO
-interface Pagable {
+interface Registrable {
     fun procesar(monto: Double): Boolean
     val nombre: String
 }
 
-class TarjetaCredito(val numero: String) : Pagable {
-    override val nombre = "Tarjeta de crédito"
+class NotaMatematica(val estudiante: String) : Registrable {
+    override val nombre = "Nota de Matemática"
     override fun procesar(monto: Double): Boolean {
-        println("💳 Cargando $${"%.2f".format(monto)} a $numero")
+        println("📘 Registrando ${"%.2f".format(monto)} para $estudiante en $nombre")
         return true
     }
 }
 
-class PayPal(val email: String) : Pagable {
-    override val nombre = "PayPal"
+class NotaLengua(val estudiante: String) : Registrable {
+    override val nombre = "Nota de Lengua"
     override fun procesar(monto: Double): Boolean {
-        println("🅿️ Enviando $${"%.2f".format(monto)} a $email")
+        println("📝 Registrando ${"%.2f".format(monto)} para $estudiante en $nombre")
         return true
     }
 }
 
-class Efectivo : Pagable {
-    override val nombre = "Efectivo"
+class NotaCiencias(val estudiante: String) : Registrable {
+    override val nombre = "Nota de Ciencias"
     override fun procesar(monto: Double): Boolean {
-        println("💵 Recibiendo $${"%.2f".format(monto)} en efectivo")
+        println("📊 Registrando ${"%.2f".format(monto)} para $estudiante en $nombre")
         return true
     }
 }
 
-// Esta función no sabe ni le importa qué tipo de pago es
-// Solo sabe que recibe algo que implementa Pagable — POLIMORFISMO
-fun cobrar(monto: Double, metodoPago: Pagable) {
-    println("Procesando pago con ${metodoPago.nombre}...")
+fun cobrar(monto: Double, metodoPago: Registrable) {
+    println("Procesando registro con ${metodoPago.nombre}...")
     val exito = metodoPago.procesar(monto)
-    println(if (exito) "✅ Pago exitoso" else "❌ Pago fallido")
+    println(if (exito) "✅ Nota registrada" else "❌ Error al registrar nota")
 }
 
 fun main() {
-    val metodos: List<Pagable> = listOf(
-        TarjetaCredito("**** **** **** 1234"),
-        PayPal("ana@test.com"),
-        Efectivo()
+    val metodos: List<Registrable> = listOf(
+        NotaMatematica("Ana"),
+        NotaLengua("Ana"),
+        NotaCiencias("Ana")
     )
 
-    // Misma función — comportamiento distinto según el tipo
-    metodos.forEach { cobrar(99.99, it) }
+    metodos.forEach { cobrar(18.75, it) }
 }

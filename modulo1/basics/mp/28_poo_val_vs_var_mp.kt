@@ -1,13 +1,10 @@
-class PuntoInmutable(val x: Double, val y: Double)   // solo lectura
+class Estudiante(val nombre: String, val matricula: String)
 
-class Contador(var valor: Int = 0) {                  // lectura y escritura
-    fun incrementar() { valor++ }
-    fun resetear()    { valor = 0 }
+class RegistroNota(var nota: Int = 0) {
+    fun incrementar() { nota++ }
+    fun resetear() { nota = 0 }
 }
 
-// Sin val/var — parámetro del constructor, NO propiedad
-// Solo accesible dentro del bloque init
-class Temporal(nombre: String) {
+class Materia(nombre: String) {
     val nombreUpper = nombre.uppercase()
-    // nombre no existe fuera de aquí
 }

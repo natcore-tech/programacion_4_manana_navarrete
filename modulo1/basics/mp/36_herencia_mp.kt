@@ -3,38 +3,31 @@
 // class Perro : Animal("Rex")  // ERROR — Animal es final
 
 // Con open — la jerarquía está diseñada para ello
-open class Animal(val nombre: String, val sonido: String) {
-    // open — la subclase PUEDE sobreescribir
-    open fun hacerSonido() = println("$nombre dice: $sonido")
-    open fun descripcion() = "Soy $nombre"
-
-    // Sin open — la subclase NO puede sobreescribir
-    fun respirar() = println("$nombre respira")
+open class Registro(val nombre: String, val nota: String) {
+    open fun hacerSonido() = println("$nombre: nota $nota")
+    open fun descripcion() = "Alumno $nombre"
+    fun respirar() = println("Registro de $nombre actualizado")
 }
 
-// HERENCIA: Perro reutiliza todo de Animal y especializa hacerSonido
-class Perro(nombre: String) : Animal(nombre, "Guau") {
+class Estudiante(nombre: String) : Registro(nombre, "A") {
     override fun hacerSonido() {
-        super.hacerSonido()          // reutiliza la implementación del padre
-        println("(mueve la cola)")   // añade comportamiento propio
+        super.hacerSonido()
+        println("Estado: aprobado")
     }
-    override fun descripcion() = "${super.descripcion()}, un perro"
+    override fun descripcion() = "${super.descripcion()}, estudiante"
 }
 
-class Gato(nombre: String, val interior: Boolean) : Animal(nombre, "Miau") {
+class EstudianteInterno(nombre: String, val presencial: Boolean) : Registro(nombre, "B") {
     override fun descripcion() =
-        "${super.descripcion()}, un gato ${if (interior) "de interior" else "callejero"}"
+        "${super.descripcion()}, ${if (presencial) "presencial" else "a distancia"}"
 }
 
 fun main() {
-    val perro = Perro("Rex")
-    perro.hacerSonido()
-    // Rex dice: Guau
-    // (mueve la cola)
+    val estudiante = Estudiante("Rex")
+    estudiante.hacerSonido()
 
-    val gato = Gato("Misi", true)
-    println(gato.descripcion())  // Soy Misi, un gato de interior
+    val estudiante2 = EstudianteInterno("Misi", true)
+    println(estudiante2.descripcion())
 
-    // Herencia — Perro y Gato tienen todo lo de Animal más lo propio
-    perro.respirar()  // Rex respira — heredado de Animal
+    estudiante.respirar()
 }

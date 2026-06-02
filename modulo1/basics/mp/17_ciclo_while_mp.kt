@@ -1,16 +1,16 @@
 
 
 fun main() {
-  println("Controles de Flujo Iteraciones, Ciclos repetitivos ciclo while")
+    println("Sistema de Registro de Notas")
   
- print("Do While")
+ print("Registro de Alumnos (Do While)")
   contador = 1
   do {
       println(contador)
       contador++;
   }while(contador <= 5)
   
-  println("Break Contiune")
+    println("Procesamiento de Notas (Break/Continue)")
   contador = 1
   while(contador <= 10){
       contador ++;
@@ -21,9 +21,9 @@ fun main() {
   
   var input: String
   while(true){
-      println("Escribe 'salir' para terminar: ")
+    println("Ingrese nota o 'salir' para finalizar: ")
       input=readLine()?:""
       if (input=="salir") break
-      println("usted ingreso: $input")
+    println("Nota registrada: $input")
   }
 }

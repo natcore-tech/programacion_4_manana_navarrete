@@ -1,18 +1,17 @@
 // El constructor primario integra la declaración de propiedades
-class Persona(val nombre: String, val edad: Int)
+class Estudiante(val nombre: String, val nota: Int)
 
-// Con cuerpo adicional
-class Persona2(val nombre: String, val edad: Int) {
-    fun presentarse() = "Soy $nombre y tengo $edad años"
-    fun esMayorDeEdad() = edad >= 18
+class Estudiante2(val nombre: String, val nota: Int) {
+    fun presentarse() = "Estudiante $nombre tiene nota $nota"
+    fun esMayorDeEdad() = nota >= 60
 }
 
 fun main() {
-    val p = Persona("Ana", 28)
-    println(p.nombre)   // Ana
-    println(p.edad)     // 28
+    val s = Estudiante("Ana", 85)
+    println(s.nombre)
+    println(s.nota)
 
-    val p2 = Persona2("Luis", 17)
-    println(p2.presentarse())     // Soy Luis y tengo 17 años
-    println(p2.esMayorDeEdad())   // false
+    val s2 = Estudiante2("Luis", 55)
+    println(s2.presentarse())
+    println(s2.esMayorDeEdad())
 }

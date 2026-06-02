@@ -1,26 +1,26 @@
 
 
 fun main() {
-  println("Controles de Flujo when con condiciones arbitrarias")
-  println("Nombre del Paciente")
-  val nombrePaciente=readLine()?.trim()?.lowercase()?:"Sin Identificacion"
-  println("Tiene Nivel Alerta (CRITICO/URGENTE/MODERADO/LEVE)")
-  val nivel=readLine()?.trim()?.uppercase()?:""
-  
+  println("Sistema de Registro de Notas")
+  println("Ingrese nombre del estudiante")
+  val nombreEstudiante=readLine()?.trim()?.lowercase()?:"Sin Identificacion"
+  println("Ingrese la calificación (EXCELENTE/BUENO/REGULAR/BAJO)")
+  val calificacion=readLine()?.trim()?.uppercase()?:""
 
-  when (nivel){
-      "CRITICO"->{
-          println("ALERTA CRITICA: Paciente: $nombrePaciente")
-          println("Llamar al medico de guardia")
-          println("Activar protocolo urgencia critica")
+
+  when (calificacion){
+      "EXCELENTE"->{
+          println("EXCELENTE: Estudiante: $nombreEstudiante")
+          println("Felicidades, desempeño sobresaliente")
+          println("Continúa con este excelente trabajo")
       }
-      "URGENTE"->{
-          println("URGENTE: Paciente: $nombrePaciente")
-          println("Priorizar en la sala de espera")
-          println("Reevaluar en 15 minutos")
+      "BUENO"->{
+          println("BUENO: Estudiante: $nombreEstudiante")
+          println("Buen desempeño académico")
+          println("Mantén el esfuerzo para mejorar")
       }
-      "MODERADO"->println("Moderado: Paciente: $nombrePaciente")
-      "LEVE"->println("Leve: Paciente: $nombrePaciente continuar espera normal")
-      else -> println("Nivel no reconocido")
+      "REGULAR"->println("REGULAR: Estudiante: $nombreEstudiante necesita mejorar")
+      "BAJO"->println("BAJO: Estudiante: $nombreEstudiante requiere atención especial")
+      else -> println("Calificación no reconocida")
   }
 }

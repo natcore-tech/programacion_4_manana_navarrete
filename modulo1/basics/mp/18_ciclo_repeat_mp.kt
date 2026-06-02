@@ -1,26 +1,26 @@
 fun main() {
-    val totalMediciones = 6
-    var sumaTemperaturas = 0.0
-    var contadorFiebre = 0
+    val totalNotas = 6
+    var sumaNotas = 0.0
+    var contadorAprobadas = 0
 
-    repeat(totalMediciones) { i ->
-        print("Medicion ${i + 1} (C): ")
-        val temp = readLine()?.toDoubleOrNull() ?: 0.0
+    repeat(totalNotas) { i ->
+        print("Nota ${i + 1}: ")
+        val nota = readLine()?.toDoubleOrNull() ?: 0.0
         
-        sumaTemperaturas += temp
+        sumaNotas += nota
 
-        if (temp > 38.5) {
-            contadorFiebre++
+        if (nota >= 6.0) {
+            contadorAprobadas++
         }
     }
 
-    val promedio = sumaTemperaturas / totalMediciones
+    val promedio = sumaNotas / totalNotas
 
-    println("\nPromedio: ${"%.1f".format(promedio)}°C")
+    println("\nPromedio: ${"%.1f".format(promedio)}")
 
-    if (contadorFiebre > 2) {
-        println("Alerta: Hubo fiebre sostenida.")
+    if (contadorAprobadas > 4) {
+        println("Desempeño satisfactorio.")
     } else {
-        println("Paciente sin fiebre sostenida.")
+        println("Desempeño insatisfactorio.")
     }
 }

@@ -1,14 +1,14 @@
-enum class Estado(val descripcion: String, val esTerminal: Boolean) {
-    PENDIENTE  ("Esperando procesamiento", false),
-    EN_PROCESO ("Siendo procesado",        false),
-    COMPLETADO ("Finalizado con éxito",    true),
-    FALLIDO    ("Finalizado con error",    true),
-    CANCELADO  ("Cancelado por usuario",   true);
+enum class Calificacion(val descripcion: String, val esAprobado: Boolean) {
+    INSUFICIENTE ("Nota muy baja",      false),
+    DEFICIENTE   ("Nota baja",          false),
+    SUFICIENTE   ("Nota aprobatoria",   true),
+    NOTABLE      ("Nota buena",         true),
+    SOBRESALIENTE("Nota excelente",     true);
 
-    fun puedeTransicionarA(siguiente: Estado): Boolean = when (this) {
-        PENDIENTE  -> siguiente == EN_PROCESO || siguiente == CANCELADO
-        EN_PROCESO -> siguiente == COMPLETADO || siguiente == FALLIDO
-        else       -> false
+    fun puedeTransicionarA(siguiente: Calificacion): Boolean = when (this) {
+        INSUFICIENTE -> siguiente == DEFICIENTE || siguiente == SUFICIENTE
+        DEFICIENTE   -> siguiente == SUFICIENTE || siguiente == NOTABLE
+        else         -> false
     }
 }
 

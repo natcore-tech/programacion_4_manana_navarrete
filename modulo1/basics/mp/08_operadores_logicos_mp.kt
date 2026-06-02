@@ -1,6 +1,6 @@
 
 fun main() {
-  println("Operadores Logicos")
+  println("Estados para permisos de registro de notas")
   val esMayor=true
   val tienePermiso=false
   val estaActivo=true

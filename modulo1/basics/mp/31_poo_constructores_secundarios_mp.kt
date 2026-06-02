@@ -1,12 +1,11 @@
 class Rectangulo(val ancho: Double, val alto: Double) {
-    val area:      Double get() = ancho * alto
-    val perimetro: Double get() = 2 * (ancho + alto)
+    val promedio: Double get() = (ancho + alto) / 2
+    val total: Double get() = ancho + alto
 
-    // Siempre llaman al constructor primario con this(...)
     constructor(lado: Double) : this(lado, lado)
     constructor(ancho: Int, alto: Int) : this(ancho.toDouble(), alto.toDouble())
 
-    override fun toString() = "Rectángulo(${ancho}x${alto}) | área=${area}"
+    override fun toString() = "RegistroNotas(n1=${ancho}, n2=${alto}) | promedio=${promedio} | total=${total}"
 }
 
 fun main() {
@@ -14,6 +13,6 @@ fun main() {
     val r2 = Rectangulo(4.0)        // cuadrado
     val r3 = Rectangulo(6, 2)       // con Int
 
-    println(r1)  // Rectángulo(5.0x3.0) | área=15.0
-    println(r2)  // Rectángulo(4.0x4.0) | área=16.0
+    println("Alumno 1: $r1")
+    println("Alumno 2: $r2")
 }

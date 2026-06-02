@@ -1,40 +1,40 @@
 fun main() {
-    println("Map Inmutable")
-    val capitales = mapOf(
-        "Espana" to "Madrid",
-        "Francia" to "Paris",
-        "Alemania" to "Berlin",
-        "Italia" to "Roma"
+    println("Registro de Notas - Inmutable")
+    val notasEstudiantes = mapOf(
+        "Juan" to 85,
+        "Maria" to 92,
+        "Carlos" to 78,
+        "Ana" to 95
     )
-    println(capitales["Espana"])
-    println(capitales["Portugal"])
-    println(capitales.getOrDefault("Espana", "Desconocido"))
-    println(capitales.getOrDefault("Portugal", "Desconocido"))
-    println(capitales)
-    println(capitales.keys)
-    println(capitales.values)
-    println(capitales.entries)
-    for((pais, capital)in capitales){
-        println("$pais - $capital")
+    println(notasEstudiantes["Juan"])
+    println(notasEstudiantes["Pedro"])
+    println(notasEstudiantes.getOrDefault("Juan", 0))
+    println(notasEstudiantes.getOrDefault("Pedro", 0))
+    println(notasEstudiantes)
+    println(notasEstudiantes.keys)
+    println(notasEstudiantes.values)
+    println(notasEstudiantes.entries)
+    for((estudiante, nota)in notasEstudiantes){
+        println("$estudiante obtuvo: $nota")
     }
     
-    println("Map Mutable")
-    val inventario = mutableMapOf(
-        "Laptops" to 10,
-        "Impresoras" to 4,
-        "Teclados" to 12,
-        "Mouse" to 8
+    println("Registro de Notas - Mutable")
+    val calificaciones = mutableMapOf(
+        "Matematicas" to 88,
+        "Historia" to 76,
+        "Ciencias" to 91,
+        "Educacion" to 85
     )    
-    inventario["Monitores"]=5
-    println(inventario)
-    inventario["Laptops"]=20
-    println(inventario)
-    inventario.remove("Mouse")
-    println(inventario)
-    inventario.getOrPut("Proyector"){15}
-    println(inventario)
-    inventario.getOrPut("Teclados"){15}
-    println(inventario)
+    calificaciones["Ingles"]=79
+    println(calificaciones)
+    calificaciones["Matematicas"]=95
+    println(calificaciones)
+    calificaciones.remove("Educacion")
+    println(calificaciones)
+    calificaciones.getOrPut("Literatura"){82}
+    println(calificaciones)
+    calificaciones.getOrPut("Ciencias"){82}
+    println(calificaciones)
     
     
     

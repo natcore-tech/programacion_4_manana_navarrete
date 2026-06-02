@@ -1,30 +1,28 @@
-object Configuracion {
-    val host:    String = "api.ejemplo.com"
-    val puerto:  Int    = 443
-    private val apiKey: String = "sk-secreto-123"   // privado — nunca expuesto
+object ConfiguracionNotas {
+    val institucion: String = "Universidad Central"
+    val semestre:    Int    = 2024
+    private val codigoAcceso: String = "access-code-5678"
 
-    fun baseUrl() = "https://$host:$puerto"
-    fun headers() = mapOf("Authorization" to "Bearer $apiKey")
+    fun urlAcceso() = "$institucion - Semestre $semestre"
+    fun credenciales() = mapOf("Acceso" to codigoAcceso)
 }
 
-class Usuario private constructor(val id: Int, val nombre: String) {
+class Nota private constructor(val id: Int, val asignatura: String, val calificacion: Double) {
     companion object {
         private var contadorId = 0
 
-        // Factory function — encapsulamiento del constructor
-        fun crear(nombre: String, email: String): Usuario? {
-            if (nombre.isBlank() || !email.contains("@")) return null
-            return Usuario(++contadorId, nombre.trim())
+        fun registrar(asignatura: String, calificacion: Double): Nota? {
+            if (asignatura.isBlank() || calificacion < 0.0 || calificacion > 100.0) return null
+            return Nota(++contadorId, asignatura.trim(), calificacion)
         }
 
-        const val ROL_DEFECTO = "viewer"
+        const val ESTADO_DEFECTO = "registrada"
     }
 }
 
 fun main() {
-    println(Configuracion.baseUrl())  // https://api.ejemplo.com:443
-    // Configuracion.apiKey            // ERROR — privado
+    println(ConfiguracionNotas.urlAcceso())
 
-    val u = Usuario.crear("Ana", "ana@test.com")
-    println(u)  // Usuario(id=1, nombre=Ana García)
+    val nota = Nota.registrar("Programacion", 95.5)
+    println(nota)
 }

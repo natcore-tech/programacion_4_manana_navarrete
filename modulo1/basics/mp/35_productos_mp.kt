@@ -3,19 +3,17 @@ data class Categoria(val id: Int, val nombre: String)
 data class Producto(
     val id:        Int,
     val nombre:    String,
-    val precio:    Double,
-    val stock:     Int,
+    val nota:      Double,
+    val faltas:    Int,
     val categoria: Categoria,
-    val activo:    Boolean = true
+    val inscrito:  Boolean = true
 ) {
-    // ABSTRACCIÓN: el usuario consulta disponible sin saber la lógica
-    val disponible: Boolean get() = activo && stock > 0
-    val precioConIva: Double get() = precio * 1.19
+    val aprobado: Boolean get() = inscrito && nota >= 60.0
+    val notaConBonus: Double get() = nota * 1.05
 
-    // Devuelve una copia — inmutabilidad como forma de encapsulamiento
     fun aplicarDescuento(porcentaje: Double): Producto {
-        require(porcentaje in 0.0..100.0) { "Descuento debe ser entre 0 y 100" }
-        return copy(precio = precio * (1 - porcentaje / 100))
+        require(porcentaje in 0.0..100.0)
+        return copy(nota = nota * (1 - porcentaje / 100))
     }
 }
 
@@ -45,20 +43,20 @@ object CatalogoProductos {
 }
 
 fun main() {
-    CatalogoProductos.agregarProducto("Teclado mecánico",   89.99, 15, 1)
-    CatalogoProductos.agregarProducto("Mouse inalámbrico",  29.99,  0, 1)
-    CatalogoProductos.agregarProducto("Monitor 27\"",      349.99,  5, 2)
-    CatalogoProductos.agregarProducto("Auriculares BT",    149.99,  8, 3)
+    CatalogoProductos.agregarProducto("Ana Pérez",   85.0, 2, 1)
+    CatalogoProductos.agregarProducto("Luis Gómez",  58.5,  5, 1)
+    CatalogoProductos.agregarProducto("María Ruiz",  92.0,  0, 2)
+    CatalogoProductos.agregarProducto("Jorge Díaz",  73.5,  1, 3)
 
-    println("=== Todos los productos ===")
+    println("=== Lista de estudiantes ===")
     CatalogoProductos.listar().forEach { p ->
-        val estado = if (p.disponible) "✅" else "❌"
-        println("$estado ${p.nombre} — ${"%.2f".format(p.precioConIva)} (con IVA)")
+        val estado = if (p.aprobado) "APROBADO" else "REPROBADO"
+        println("$estado: ${p.nombre} — ${"%.2f".format(p.notaConBonus)}")
     }
 
-    println("\n=== Disponibles con 10% descuento ===")
+    println("\n=== Estudiantes aprobados con 10% de penalización aplicada ===")
     CatalogoProductos.disponibles()
         .map { it.aplicarDescuento(10.0) }
-        .forEach { println("  ${it.nombre}: ${"%.2f".format(it.precio)}") }
+        .forEach { println("  ${it.nombre}: ${"%.2f".format(it.nota)}") }
     
 }

@@ -1,50 +1,43 @@
-abstract class Figura(val nombre: String) {
-    // abstract — las subclases DEBEN implementar esto (herencia forzada)
-    abstract val area: Double
-    abstract val perimetro: Double
+abstract class RegistroNota(val nombre: String) {
+    abstract val nota: Double
+    abstract val creditos: Double
     abstract fun descripcion(): String
 
-    // concreto — disponible en todas las subclases (reutilización)
-    fun comparar(otra: Figura): String = when {
-        area > otra.area -> "$nombre es más grande que ${otra.nombre}"
-        area < otra.area -> "$nombre es más pequeña que ${otra.nombre}"
-        else             -> "$nombre y ${otra.nombre} tienen la misma área"
+    fun comparar(otro: RegistroNota): String = when {
+        nota > otro.nota -> "$nombre tiene mejor nota que ${otro.nombre}"
+        nota < otro.nota -> "$nombre tiene peor nota que ${otro.nombre}"
+        else -> "$nombre y ${otro.nombre} tienen la misma nota"
     }
 
-    // Polimorfismo: toString usa area y descripcion que son polimórficas
-    override fun toString() = "${descripcion()} | Área: ${"%.2f".format(area)}"
+    override fun toString() = "${descripcion()} | Nota: ${"%.2f".format(nota)}"
 }
 
-class Circulo(val radio: Double) : Figura("Círculo") {
-    override val area:       Double get() = Math.PI * radio * radio
-    override val perimetro:  Double get() = 2 * Math.PI * radio
-    override fun descripcion() = "Círculo de radio $radio"
+class Parcial(val alumno: String, override val nota: Double) : RegistroNota(alumno) {
+    override val creditos: Double get() = 1.0
+    override fun descripcion() = "Parcial de $alumno"
 }
 
-class Rectangulo(val ancho: Double, val alto: Double) : Figura("Rectángulo") {
-    override val area:       Double get() = ancho * alto
-    override val perimetro:  Double get() = 2 * (ancho + alto)
-    override fun descripcion() = "Rectángulo de ${ancho}x${alto}"
+class Proyecto(val alumno: String, override val nota: Double) : RegistroNota(alumno) {
+    override val creditos: Double get() = 2.0
+    override fun descripcion() = "Proyecto de $alumno"
 }
 
-class TrianguloEquilatero(val lado: Double) : Figura("Triángulo") {
-    override val area:       Double get() = (Math.sqrt(3.0) / 4) * lado * lado
-    override val perimetro:  Double get() = 3 * lado
-    override fun descripcion() = "Triángulo equilátero de lado $lado"
+class ExamenFinal(val alumno: String, override val nota: Double) : RegistroNota(alumno) {
+    override val creditos: Double get() = 3.0
+    override fun descripcion() = "Examen final de $alumno"
 }
 
 fun main() {
-    // POLIMORFISMO: la lista acepta cualquier Figura
-    val figuras: List<Figura> = listOf(
-        Circulo(5.0),
-        Rectangulo(4.0, 6.0),
-        TrianguloEquilatero(8.0)
+    val registros: List<RegistroNota> = listOf(
+        Parcial("Ana", 18.5),
+        Proyecto("Luis", 16.0),
+        ExamenFinal("Marta", 19.2)
     )
-    
-    figuras.forEach { println(it) }  // toString polimórfico
 
-    val mayor = figuras.maxByOrNull { it.area }
-    println("\nFigura más grande: ${mayor?.nombre}")
+    registros.forEach { println(it) }
 
-    println(figuras[0].comparar(figuras[1]))
+    val mejor = registros.maxByOrNull { it.nota }
+    println("\nMejor nota registrada: ${mejor?.nombre}")
+
+    println(registros[0].comparar(registros[1]))
 }

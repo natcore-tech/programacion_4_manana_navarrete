@@ -1,72 +1,72 @@
 
 
 fun main() {
-  println("Controles de Flujo Iteraciones, Ciclos repetitivos ciclo for")
+  println("Sistema de registro de notas")
   
-  println("For con rango")
+  println("Recorrido de notas con rango")
   for( i in 1..5){
      val a=5
-      println("5x$i=${i*a}")
+      println("Nota $i: ${i*a}")
   }
   
-  println("For con until")
+  println("Recorrido de notas con until")
   for( i in 1 until 5){
-      println(i)
+      println("Nota $i")
   }
   
-  println("For con pasos")
+  println("Recorrido de notas con pasos")
   for( i in 1..5 step 2){
-      println(i)
+      println("Nota $i")
   }
   
-  println("For descendente")
+  println("Recorrido de notas descendente")
   for( i in 10 downTo 1){
-      println(i)
+      println("Nota $i")
   }
   
-  println("For con listas")
+  println("Listado de estudiantes")
   val nombres=listOf("Maria","Juan","Jose")
   for( nombre in nombres ){
-      println(nombre)
+      println("Estudiante: $nombre")
   }
   
-  println("For con listas index valor")
+  println("Listado de estudiantes con indice")
   for((index,valor) in nombres.withIndex()){
-      println("$index->$valor")
+      println("$index -> Estudiante: $valor")
   }
   
-  println("For con brake")
+  println("Registro de notas con corte")
   for(i in 1..10){
       if(i==5){
           break;
       }
   }
   
-  println("For con continue")
+  println("Registro de notas con omision")
   for(i in 1..10){
       if(i==3){
           continue;
       }
-    println("item $i")  
+    println("Nota registrada $i")  
   }
   
-  println("For con continue")
+  println("Registro de notas con omision y corte")
   for(i in 1..10){
       if(i==3) continue;
       if(i==7) break;
-    println("item $i")  
+    println("Nota registrada $i")  
   }
   
   val pacientes=listOf(
-    Triple("Garcia, M", 37.2, 98),
-    Triple("Andres, Z", 39.1, 94),
-    Triple("Torres, R", 40.3, 91),
+    Triple("Garcia, M", 17.2, 98),
+    Triple("Andres, Z", 19.1, 94),
+    Triple("Torres, R", 14.3, 91),
   )
   for ((posicion, paciente) in pacientes.withIndex()){
       val (nombre, temperatura, spo2) = paciente
-      val alertaTemp = if(temperatura>=38.0) "Fiebre" else "Normal"
-      val alertaSpo2 = if(spo2<95.0) "Baja" else "Normal"
-      println("Cama $posicion - $nombre - Temp: $temperatura Gdo.Cent. $alertaTemp - Spo2: $spo2 $alertaSpo2")
+      val estadoNota = if(temperatura>=18.0) "Aprobado" else "Desaprobado"
+      val estadoAsistencia = if(spo2<95.0) "Baja" else "Normal"
+      println("Registro $posicion - $nombre - Nota: $temperatura - Estado: $estadoNota - Asistencia: $spo2 $estadoAsistencia")
   }
 
 

@@ -2,13 +2,13 @@
 fun main() {
   println("Controles de Flujo")
   println("Condicional If")
-  println("Incluir Temperatura en grados centigrados: ")
-  val temperatura=readLine()?.toDoubleOrNull()?: 36.5
-  if(temperatura>=38.0){
-      println("Fiebre detectada: derivar consulta prioritaria")
+  println("Incluir nota (0-100): ")
+  val nota=readLine()?.toDoubleOrNull()?: 0.0
+  if(nota>=70.0){
+      println("Aprobado: estudiante ha cumplido los requisitos")
   }
-  if(temperatura>=40.0){
-      println("Fiebre detectada: atencion de emergencia inmediata")
+  if(nota>=90.0){
+      println("Excelente: desempeño sobresaliente del estudiante")
   }
-  println("Temperatura registrada: $temperatura grados centigrados")
+  println("Nota registrada: $nota puntos")
 }

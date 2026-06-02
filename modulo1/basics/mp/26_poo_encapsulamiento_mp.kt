@@ -1,43 +1,40 @@
-class CuentaBancaria(titular: String, saldoInicial: Double) {
+class RegistroNotas(estudiante: String, notaInicial: Double) {
 
-    val titular: String = titular       // público — cualquiera puede leer
+    val estudiante: String = estudiante
 
-    private var saldo: Double = saldoInicial  // privado — solo esta clase lo modifica
+    private var nota: Double = notaInicial
 
-    internal val numeroCuenta: String =        // internal — visible en el mismo módulo
-        "ES${(100000..999999).random()}"
+    internal val numeroRegistro: String =
+        "RN${(100000..999999).random()}"
 
-    protected open fun calcularInteres(): Double = saldo * 0.02  // protected — visible en subclases
+    protected open fun calcularPromedio(): Double = nota
 
-    // El saldo solo cambia a través de estos métodos — NUNCA directamente
-    fun depositar(monto: Double) {
-        require(monto > 0) { "El monto debe ser positivo" }
-        saldo += monto
-        println("Depositado: $${"%.2f".format(monto)} | Nuevo saldo: ${consultarSaldo()}")
+    fun registrarNota(nuevaNota: Double) {
+        require(nuevaNota in 0.0..10.0) { "La nota debe estar entre 0 y 10" }
+        nota = nuevaNota
+        println("Nota registrada: ${"%.2f".format(nuevaNota)} | Promedio actual: ${consultarPromedio()}")
     }
 
-    fun retirar(monto: Double): Boolean {
-        require(monto > 0) { "El monto debe ser positivo" }
-        if (monto > saldo) {
-            println("Fondos insuficientes")
+    fun eliminarNota(): Boolean {
+        if (nota == 0.0) {
+            println("No se pudo eliminar la nota")
             return false
         }
-        saldo -= monto
-        println("Retirado: $${"%.2f".format(monto)} | Nuevo saldo: ${consultarSaldo()}")
+        nota = 0.0
+        println("Nota eliminada | Promedio actual: ${consultarPromedio()}")
         return true
     }
 
-    fun consultarSaldo(): String = "$${"%.2f".format(saldo)}"
+    fun consultarPromedio(): String = "${"%.2f".format(calcularPromedio())}"
 }
 
 fun main() {
-    val cuenta = CuentaBancaria("Ana García", 1000.0)
+    val registro = RegistroNotas("Ana García", 8.5)
 
-    cuenta.depositar(500.0)    // Depositado: $500.00 | Nuevo saldo: $1500.00
-    cuenta.retirar(200.0)      // Retirado: $200.00 | Nuevo saldo: $1300.00
-    cuenta.retirar(2000.0)     // Fondos insuficientes
+    registro.registrarNota(9.2)
+    registro.eliminarNota()
+    registro.registrarNota(10.0)
 
-    println(cuenta.titular)         // Ana García — acceso público permitido
-    println(cuenta.consultarSaldo()) // $1300.00
-    // cuenta.saldo = 999999.0       // ERROR — saldo es privado
+    println(registro.estudiante)
+    println(registro.consultarPromedio())
 }
