@@ -1,27 +1,20 @@
+class Student {
+  String name;
+  String id;
+  double grade;
+  double maxGrade;
+  bool passed;
+
+  Student(this.name, this.id, this.grade, {this.maxGrade = 100}) : passed = grade >= 60;
+
+  @override
+  String toString() => 'Estudiante: $name (ID: $id) - Nota: ${grade.toStringAsFixed(2)}/$maxGrade - ${passed ? 'Aprobado' : 'Reprobado'}';
+}
+
 void main() {
-  // var — tipo inferido (como val en Kotlin)
-  var nombre = 'Ana';           // String
-  var edad   = 28;              // int
-  var precio = 89.99;           // double
-  var activo = true;            // bool
+  var alumno = Student('Ana García', 'A001', 87.5);
+  var alumno2 = Student('Luis Pérez', 'A002', 54.0);
 
-  // Tipo explícito
-  String apellido = 'García';
-  int    stock    = 100;
-  double pi       = 3.14159;
-  bool   visible  = false;
-
-  // final — no se puede reasignar (como val en Kotlin)
-  final ciudad = 'Madrid';
-  // ciudad = 'Barcelona';  // ERROR — final no se puede reasignar
-
-  // const — constante en tiempo de compilación (como const en Kotlin)
-  const gravedad = 9.8;
-  const pi2      = 3.14159;
-
-  // Diferencia clave: final vs const
-  final ahora  = DateTime.now();   // OK — se evalúa en runtime
-  // const ahora = DateTime.now(); // ERROR — DateTime.now() no es constante de compilación
-
-  print('$nombre $apellido tiene $edad años en $ciudad');
+  print(alumno);
+  print(alumno2);
 }

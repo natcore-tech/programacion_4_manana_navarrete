@@ -1,53 +1,46 @@
-class Servidor {
-  final String hostname;
-  final String ip;
-  final int    puerto;
-  final bool   usaSsl;
+class RegistroNotas {
+  final String alumno;
+  final String asignatura;
+  final double nota;
+  final bool aprobada;
 
-  // Constructor principal
-  Servidor({
-    required this.hostname,
-    required this.ip,
-    required this.puerto,
-    this.usaSsl = false,
+  RegistroNotas({
+    required this.alumno,
+    required this.asignatura,
+    required this.nota,
+    this.aprobada = false,
   });
 
-  // Constructor nombrado — alternativa de creación con configuración predefinida
-  Servidor.local()
-      : hostname = 'localhost',
-        ip       = '127.0.0.1',
-        puerto   = 8080,
-        usaSsl   = false;
+  RegistroNotas.ejemplo()
+      : alumno = 'Estudiante Ejemplo',
+        asignatura = 'Matemáticas',
+        nota = 5.0,
+        aprobada = true;
 
-  Servidor.produccion({required this.hostname, required this.ip})
-      : puerto  = 443,
-        usaSsl  = true;
+  RegistroNotas.finalExam({required this.alumno, required this.asignatura})
+      : nota = 10.0,
+        aprobada = true;
 
-  // Constructor factory — lógica de creación más compleja
-  factory Servidor.desdeUrl(String url) {
-    // Analiza una URL y extrae sus partes
-    final uri = Uri.parse(url);
-    return Servidor(
-      hostname: uri.host,
-      ip:       uri.host,        // simplificado para el ejemplo
-      puerto:   uri.port != 0 ? uri.port : (uri.scheme == 'https' ? 443 : 80),
-      usaSsl:   uri.scheme == 'https',
-    );
+  factory RegistroNotas.desdeCsv(String csv) {
+    final parts = csv.split(',');
+    final alumno = parts.length > 0 ? parts[0].trim() : 'Desconocido';
+    final asignatura = parts.length > 1 ? parts[1].trim() : 'SinAsignatura';
+    final nota = parts.length > 2 ? double.tryParse(parts[2].trim()) ?? 0.0 : 0.0;
+    return RegistroNotas(alumno: alumno, asignatura: asignatura, nota: nota, aprobada: nota >= 6.0);
   }
 
   @override
-  String toString() =>
-      '${usaSsl ? "https" : "http"}://$hostname:$puerto';
+  String toString() => '$alumno - $asignatura: ${nota.toStringAsFixed(1)} (${aprobada ? "Aprobado" : "Reprobado"})';
 }
 
 void main() {
-  final s1 = Servidor(hostname: 'api.mi-app.com', ip: '10.0.1.5', puerto: 3000);
-  final s2 = Servidor.local();
-  final s3 = Servidor.produccion(hostname: 'api.mi-app.com', ip: '10.0.1.5');
-  final s4 = Servidor.desdeUrl('https://pagos.mi-app.com:8443/v1');
+  final r1 = RegistroNotas(alumno: 'Ana', asignatura: 'Historia', nota: 7.5);
+  final r2 = RegistroNotas.ejemplo();
+  final r3 = RegistroNotas.finalExam(alumno: 'Luis', asignatura: 'Física');
+  final r4 = RegistroNotas.desdeCsv('María,Química,4.3');
 
-  print(s1);  // http://api.mi-app.com:3000
-  print(s2);  // http://localhost:8080
-  print(s3);  // https://api.mi-app.com:443
-  print(s4);  // https://pagos.mi-app.com:8443
+  print(r1);
+  print(r2);
+  print(r3);
+  print(r4);
 }

@@ -1,45 +1,32 @@
 void main() {
-  // Forma básica
-  int temperatura = 38;
+  String? alumno = 'Natalia';
+  double nota = 18.5;
 
-  if (temperatura > 37.5) {
-    print('Fiebre');
-  } else if (temperatura > 36) {
-    print('Normal');
+  if (nota >= 18) {
+    print('Alumno: $alumno');
+    print('Nota registrada: $nota');
+    print('Estado: Aprobado con excelencia');
+  } else if (nota >= 14) {
+    print('Alumno: $alumno');
+    print('Nota registrada: $nota');
+    print('Estado: Aprobado');
+  } else if (nota >= 11) {
+    print('Alumno: $alumno');
+    print('Nota registrada: $nota');
+    print('Estado: En recuperación');
   } else {
-    print('Hipotermia');
+    print('Alumno: $alumno');
+    print('Nota registrada: $nota');
+    print('Estado: Desaprobado');
   }
 
-  // Operador ternario — para decisiones de una línea
-  // condición ? valorSiVerdadero : valorSiFalso
-  String estado = temperatura > 37.5 ? 'Con fiebre' : 'Sin fiebre';
-  print(estado);
+  String resultado = nota >= 14 ? 'Aprobado' : 'Desaprobado';
+  print(resultado);
 
-  // null-aware con ternario
-  String? ciudad;
-  String display = ciudad != null ? ciudad.toUpperCase() : 'Sin ciudad';
+  String? curso;
+  String detalleCurso = curso != null ? curso.toUpperCase() : 'Sin curso asignado';
 
-  // Forma más concisa con ??
-  String display2 = ciudad?.toUpperCase() ?? 'Sin ciudad';
-  print(display2);  // Sin ciudad
-}
-
-void main() {
-  String? nombre;
-
-  // Sin verificar — error de compilación
-  // print(nombre.length);  // ERROR: nombre puede ser null
-
-  // Forma 1 — verificación explícita
-  if (nombre != null) {
-    print(nombre.length);  // aquí Dart sabe que nombre es String
-  }
-
-  // Forma 2 — operador ?.
-  print(nombre?.length);  // null, sin excepción
-
-  // Forma 3 — valor por defecto
-  int longitud = nombre?.length ?? 0;
-  print(longitud);  // 0
+  String detalleCurso2 = curso?.toUpperCase() ?? 'Sin curso asignado';
+  print(detalleCurso2);
 }
 

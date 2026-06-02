@@ -1,22 +1,18 @@
 void main() {
-  final protocolos = ['HTTP', 'HTTPS', 'FTP', 'SSH', 'SMTP'];
+  final estudiantes = ['Ana', 'Luis', 'María', 'Carlos', 'Sofía'];
 
-  // for-in — la forma idiomática para recorrer listas
-  for (final protocolo in protocolos) {
-    print(protocolo);
+  for (final estudiante in estudiantes) {
+    print('Alumno: $estudiante');
   }
 
-  // forEach con lambda — alternativa funcional
-  protocolos.forEach((p) => print(p.toLowerCase()));
+  estudiantes.forEach((e) => print(e.toLowerCase()));
 
-  // for-in sobre un Map
-  final puertos = {'HTTP': 80, 'HTTPS': 443, 'SSH': 22, 'FTP': 21};
-  for (final entrada in puertos.entries) {
-    print('${entrada.key} → puerto ${entrada.value}');
+  final notas = {'Ana': 9.5, 'Luis': 7.0, 'María': 8.2, 'Carlos': 6.5};
+  for (final entrada in notas.entries) {
+    print('Alumno ${entrada.key} tiene nota ${entrada.value}');
   }
 
-  // for-in sobre caracteres de un String
-  for (final caracter in 'Dart') {
-    print(caracter);
+  for (final letra in 'Promedio') {
+    print(letra);
   }
 }

@@ -1,59 +1,51 @@
 class Dispositivo {
-  // 1. Propiedades
   final String id;
   final String nombre;
-  String       ip;
-  bool         _encendido = false;  // _ indica uso interno
+  List<double> notas;
+  bool _encendido = false;
 
-  // 2. Constructor nombrado con parámetros nombrados
   Dispositivo({
     required this.id,
     required this.nombre,
-    required this.ip,
+    required this.notas,
   });
 
-  // 3. Getter — propiedad derivada, solo lectura
-  bool   get encendido => _encendido;
-  String get estado    => _encendido ? 'activo' : 'inactivo';
+  bool get encendido => _encendido;
+  String get estado => _encendido ? 'matriculado' : 'no matriculado';
 
-  // 4. Setter — escritura controlada
   set estadoEncendido(bool valor) {
     _encendido = valor;
-    print('$nombre: ${valor ? "encendido" : "apagado"}');
   }
 
-  // 5. Métodos
   void conectar() {
     _encendido = true;
-    print('$nombre conectado en $ip');
   }
 
   void desconectar() {
     _encendido = false;
-    print('$nombre desconectado');
   }
 
-  String resumen() => 'ID: $id | Nombre: $nombre | IP: $ip | Estado: $estado';
+  double promedio() => notas.isEmpty ? 0.0 : notas.reduce((a, b) => a + b) / notas.length;
 
-  // 6. toString
+  String resumen() => 'ID: $id | Nombre: $nombre | Promedio: ${promedio().toStringAsFixed(2)} | Estado: $estado';
+
   @override
-  String toString() => 'Dispositivo($nombre, $ip, $estado)';
+  String toString() => 'Estudiante($nombre, Promedio: ${promedio().toStringAsFixed(2)}, $estado)';
 }
 
 void main() {
   // Crear una instancia
-  final router = Dispositivo(
-    id:     'DEV-001',
-    nombre: 'router-principal',
-    ip:     '192.168.1.1',
+  final estudiante = Dispositivo(
+    id: 'STU-001',
+    nombre: 'juan-perez',
+    notas: [7.5, 8.0, 9.0],
   );
 
-  // Usar sus métodos y propiedades
-  router.conectar();
-  print(router.estado);       // activo
-  print(router.resumen());
-  print(router);              // llama toString() automáticamente
+  estudiante.conectar();
+  final estado = estudiante.estado;
+  final resumen = estudiante.resumen();
+  final descripcion = estudiante.toString();
 
-  router.estadoEncendido = false;  // usa el setter
-  print(router.encendido);   // false
+  estudiante.estadoEncendido = false;
+  final activo = estudiante.encendido;
 }

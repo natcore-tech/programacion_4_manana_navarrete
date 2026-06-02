@@ -1,34 +1,30 @@
-class CuentaBancaria {
-  final String titular;
-  double _saldo;  // privado — nadie lo modifica directamente
+class RegistroNotas {
+  final String estudiante;
+  double _saldo;
 
-  CuentaBancaria(this.titular, double saldoInicial)
-      : _saldo = saldoInicial;
+  RegistroNotas(this.estudiante, double notaInicial)
+      : _saldo = notaInicial;
 
-  // Getter — lectura permitida, escritura no
   double get saldo => _saldo;
 
-  // Los únicos caminos para modificar _saldo
   void depositar(double monto) {
     if (monto <= 0) throw ArgumentError('El monto debe ser positivo');
     _saldo += monto;
-    print('Depósito de \$$monto. Nuevo saldo: \$$_saldo');
+    print('Se sumaron $monto puntos. Nota actual: $_saldo');
   }
 
   void retirar(double monto) {
-    if (monto <= 0)      throw ArgumentError('El monto debe ser positivo');
-    if (monto > _saldo)  throw StateError('Saldo insuficiente');
+    if (monto <= 0) throw ArgumentError('El monto debe ser positivo');
+    if (monto > _saldo) throw StateError('La nota no puede ser menor que cero');
     _saldo -= monto;
-    print('Retiro de \$$monto. Nuevo saldo: \$$_saldo');
+    print('Se restaron $monto puntos. Nota actual: $_saldo');
   }
 }
 
 void main() {
-  final cuenta = CuentaBancaria('Ana López', 500.0);
+  final cuenta = RegistroNotas('Ana López', 70.0);
 
-  cuenta.depositar(200.0);  // Depósito de $200.0. Nuevo saldo: $700.0
-  cuenta.retirar(150.0);    // Retiro de $150.0.  Nuevo saldo: $550.0
-  print(cuenta.saldo);      // 550.0
-
-  // cuenta._saldo = 999999;  // ERROR — privado, Dart no lo permite
+  cuenta.depositar(10.0);
+  cuenta.retirar(5.0);
+  print(cuenta.saldo);
 }

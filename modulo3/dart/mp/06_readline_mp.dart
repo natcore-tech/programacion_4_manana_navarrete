@@ -1,23 +1,23 @@
 import 'dart:io';
 
 void main(){
-  print('Ingrese su nombre: ');
+  print('Ingrese el nombre del estudiante: ');
   String? nombre = stdin.readLineSync();
-  print('Hola, $nombre');
-  print('Ingrese un numero entero:');
-  int numero = int.parse(stdin.readLineSync()!);
-  print('El numero: $numero');
+  print('Estudiante: $nombre');
+  print('Ingrese la nota de matematicas:');
+  int notaMatematicas = int.parse(stdin.readLineSync()!);
+  print('Nota de matematicas: $notaMatematicas');
 
-  print('Ingrese un decimal:');
-  double valor = double.parse(stdin.readLineSync()!);
-  print('El decimal: $valor'); 
+  print('Ingrese la nota de lenguaje:');
+  double notaLenguaje = double.parse(stdin.readLineSync()!);
+  print('Nota de lenguaje: $notaLenguaje'); 
 
-  print('Ingrese el primer numero:');
-  int a = int.parse(stdin.readLineSync()!);
-  print('Ingrese el segundo numero:');
-  int b = int.parse(stdin.readLineSync()!);
-  int suma = a + b;
-  print('La suma de $a y $b es: $suma');
+  print('Ingrese la nota de ciencias:');
+  int notaCiencias = int.parse(stdin.readLineSync()!);
+  print('Ingrese la nota de historia:');
+  int notaHistoria = int.parse(stdin.readLineSync()!);
+  int promedio = (notaMatematicas + notaLenguaje.toInt() + notaCiencias + notaHistoria) ~/ 4;
+  print('El promedio de $nombre es: $promedio');
 
   
 }

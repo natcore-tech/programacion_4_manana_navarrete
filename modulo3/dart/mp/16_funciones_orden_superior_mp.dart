@@ -1,36 +1,29 @@
 void main() {
-  final precios = [29.99, 49.50, 15.00, 99.99];
+  final notas = [6.5, 8.0, 4.7, 9.8];
 
-  // map devuelve un Iterable con cada elemento transformado
-  final preciosConIva = precios.map((p) => p * 1.15);
-  print(preciosConIva.toList());
-  // [34.4885, 56.925, 17.25, 114.9885]
+  final notasCurvadas = notas.map((n) => (n * 1.05));
+  print('Notas con curvatura: ${notasCurvadas.toList()}');
 
-  // map sobre Strings
-  final endpoints = ['/usuarios', '/productos', '/pedidos'];
-  final urls = endpoints.map((e) => 'https://api.ejemplo.com$e');
-  print(urls.toList());
-  // [https://api.ejemplo.com/usuarios, ...]
+  final alumnos = ['A001', 'A002', 'A003'];
+  final perfiles = alumnos.map((id) => 'https://registro.universidad.edu/alumno/$id');
+  print('Perfiles de alumnos: ${perfiles.toList()}');
 
-  final temperaturas = [36.1, 37.8, 39.2, 36.5, 38.7, 35.9];
+  final parciales = [6.0, 7.5, 4.0, 8.2, 5.5, 3.9];
 
-  final conFiebre = temperaturas.where((t) => t > 37.5);
-  print(conFiebre.toList());  // [37.8, 39.2, 38.7]
+  final aprobados = parciales.where((p) => p >= 5.0);
+  print('Aprobados: ${aprobados.toList()}');
 
-  final normales = temperaturas.where((t) => t >= 36.0 && t <= 37.5);
-  print(normales.toList());   // [36.1, 36.5]
+  final enRecuperacion = parciales.where((p) => p >= 4.0 && p < 5.0);
+  print('Recuperación: ${enRecuperacion.toList()}');
 
-  final ventas = [1500.0, 2300.0, 980.0, 3100.0, 750.0];
+  final evaluaciones = [6.0, 7.0, 5.5, 9.0, 4.5];
 
-  // reduce — combina todos los elementos en uno
-  final total = ventas.reduce((acum, venta) => acum + venta);
-  print('Total: \$${total.toStringAsFixed(2)}');  // Total: $8630.00
+  final suma = evaluaciones.reduce((acum, e) => acum + e);
+  print('Suma de evaluaciones: ${suma.toStringAsFixed(2)}');
 
-  // fold — como reduce pero con valor inicial (más seguro con listas vacías)
-  final totalFold = ventas.fold(0.0, (acum, venta) => acum + venta);
-  print('Total (fold): \$${totalFold.toStringAsFixed(2)}');
+  final sumaFold = evaluaciones.fold(0.0, (acum, e) => acum + e);
+  print('Suma (fold): ${sumaFold.toStringAsFixed(2)}');
 
-  // Encontrar el máximo
-  final maximo = ventas.reduce((a, b) => a > b ? a : b);
-  print('Mayor venta: \$$maximo');  // Mayor venta: $3100.0
+  final mejorNota = evaluaciones.reduce((a, b) => a > b ? a : b);
+  print('Mejor nota: $mejorNota');
 }

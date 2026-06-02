@@ -1,44 +1,32 @@
 void main() {
-  // List — lista ordenada (como List en Kotlin)
-  List<String> frutas   = ['manzana', 'banana', 'cereza'];
-  var          numeros  = [1, 2, 3, 4, 5];       // tipo inferido: List<int>
-
-  print(frutas[0]);         // manzana
-  print(frutas.length);     // 3
-  frutas.add('dátil');
-  frutas.remove('banana');
-
-  // Map — clave → valor (como Map en Kotlin)
-  Map<String, int> edades = {
-    'Ana':   28,
-    'Luis':  34,
-    'María': 25,
+  List<String> estudiantes = ['Ana', 'Luis', 'María'];
+  Map<String, List<double>> registroNotas = {
+    'Ana': [8.5, 9.0],
+    'Luis': [7.0, 6.5],
+    'María': [10.0]
   };
 
-  print(edades['Ana']);     // 28
-  print(edades['Pedro']);   // null — clave no existe
-  edades['Carlos'] = 40;    // añadir
+  estudiantes.add('Carlos');
+  registroNotas['Carlos'] = [9.0, 8.0];
 
-  // Set — sin duplicados (como Set en Kotlin)
-  Set<String> tags = {'flutter', 'dart', 'mobile'};
-  tags.add('flutter');      // ignorado — ya existe
-  print(tags.length);       // 3
+  Set<String> asignaturas = {'Matemáticas', 'Física', 'Química'};
+  asignaturas.add('Matemáticas');
 
-  // Spread operator — para combinar colecciones
-  var lista1 = [1, 2, 3];
-  var lista2 = [4, 5, 6];
-  var combinada = [...lista1, ...lista2];  // [1, 2, 3, 4, 5, 6]
-  print(combinada);
+  var todasNotas = [...registroNotas.values.expand((l) => l)];
 
-  // Collection if — elementos condicionales
-  bool mostrarExtra = true;
-  var items = [
-    'elemento1',
-    'elemento2',
-    if (mostrarExtra) 'elemento3',  // solo si la condición es true
+  bool incluirFinal = true;
+  var reportes = [
+    for (var est in estudiantes)
+      {
+        'nombre': est,
+        'notas': registroNotas[est] ?? [],
+        if (incluirFinal) 'promedio': ((registroNotas[est] ?? []).fold(0.0, (a, b) => a + b) / ((registroNotas[est] ?? []).isEmpty ? 1 : (registroNotas[est] ?? []).length))
+      }
   ];
 
-  // Collection for — generar elementos
-  var cuadrados = [for (var i = 1; i <= 5; i++) i * i];
-  print(cuadrados);  // [1, 4, 9, 16, 25]
+  print('Asignaturas: ${asignaturas.length}');
+  print('Total de notas registradas: ${todasNotas.length}');
+  for (var r in reportes) {
+    print('${r['nombre']}: notas=${r['notas']}, promedio=${r['promedio']}');
+  }
 }

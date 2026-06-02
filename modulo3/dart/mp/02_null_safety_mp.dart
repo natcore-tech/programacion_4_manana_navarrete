@@ -1,32 +1,25 @@
 void main() {
-  // Tipo no-nullable — NUNCA puede ser null
-  String nombre = 'Ana';
-  // nombre = null;       // ERROR de compilación
+  String estudiante = 'Ana';
 
-  // Tipo nullable — puede ser null (añadir ?)
-  String? apellido = null;   // OK
-  apellido = 'García';       // OK
+  String? curso = null;
+  curso = 'Matemáticas';
 
-  // Operadores de null safety
-  String? ciudad;
+  double? nota;
 
-  // ?. — safe call (igual que en Kotlin)
-  print(ciudad?.length);      // null — no lanza excepción
+  print(nota?.toString());
 
-  // ?? — operador Elvis (igual que ?: en Kotlin)
-  String resultado = ciudad ?? 'Sin ciudad';
-  print(resultado);           // Sin ciudad
+  String notaTexto = nota?.toString() ?? 'Sin nota'
+  ;
+  print('Estado de la nota: $notaTexto');
 
-  // ! — non-null assertion (igual que !! en Kotlin) — úsalo con precaución
-  String ciudadSegura = ciudad!;  // lanza si ciudad es null
+  nota = 8.5;
+  double notaSegura = nota!;
 
-  // Null check con if
-  if (apellido != null) {
-    print(apellido.length);   // smart cast — ya es String aquí
+  if (curso != null) {
+    print('Curso: ${curso.length} caracteres');
   }
 
-  // late — inicialización diferida (como lateinit en Kotlin)
-  late String token;
-  token = 'abc123';           // debe asignarse antes de usar
-  print(token);
+  late String registroId;
+  registroId = 'REG-2026-0001';
+  print('Registro: $registroId - Nota: $notaSegura');
 }

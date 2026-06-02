@@ -1,34 +1,42 @@
+class Nota {
+  final String estudiante;
+  final int evaluacion;
+  final double promedio;
+
+  Nota(this.estudiante, this.evaluacion, this.promedio);
+}
+
 void main() {
-  // Conversiones numéricas
-  int    entero  = 42;
-  double decimal = entero.toDouble();   // 42.0
-  String texto   = entero.toString();   // "42"
+  int evaluacion = 18;
+  double promedio = evaluacion.toDouble();
+  String registro = evaluacion.toString();
 
-  // String → número
-  int    num1 = int.parse('123');       // 123
-  double num2 = double.parse('3.14');   // 3.14
+  int notaEntera = int.parse('16');
+  double notaDecimal = double.parse('17.5');
 
-  // Conversión segura (no lanza excepción)
-  int?    num3 = int.tryParse('abc');   // null
-  double? num4 = double.tryParse('99'); // 99.0
+  int? notaInvalida = int.tryParse('abc');
+  double? notaOpcional = double.tryParse('19');
 
-  // Verificar tipo con is (como en Kotlin)
-  Object valor = 'texto';
+  Object valor = 'Matematica';
   if (valor is String) {
-    print(valor.length);  // smart cast — ya es String
+    print('Curso: ${valor.toUpperCase()}');
   }
 
-  // Cast explícito con as
-  Object obj = 'Hola';
-  String str = obj as String;
+  Object obj = 'Registro listo';
+  String mensaje = obj as String;
 
-  // Comprobar nulabilidad
-  String? nullable = null;
-  int longitud = nullable?.length ?? 0;
-  print(longitud);  // 0
+  String? observacion = null;
+  int longitud = observacion?.length ?? 0;
 
-  // Números especiales
-  print(double.infinity);     // Infinity
-  print(double.nan);          // NaN
-  print(double.maxFinite);    // 1.7976931348623157e+308
+  Nota nota = Nota('Nat', notaEntera, notaDecimal);
+
+  print('Estudiante: ${nota.estudiante}');
+  print('Evaluacion: ${nota.evaluacion}');
+  print('Promedio: ${nota.promedio}');
+  print('Registro: $registro');
+  print('Nota invalida: $notaInvalida');
+  print('Nota opcional: $notaOpcional');
+  print('Mensaje: $mensaje');
+  print('Observacion: $longitud');
+  print('Promedio maximo permitido: ${double.maxFinite}');
 }

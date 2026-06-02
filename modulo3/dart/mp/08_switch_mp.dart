@@ -1,61 +1,58 @@
 void main() {
-  String codigoHttp = '404';
+  String letraNota = 'B';
 
-  switch (codigoHttp) {
-    case '200':
-      print('OK');
-    case '201':
-      print('Creado');
-    case '400':
-      print('Petición incorrecta');
-    case '401':
-      print('No autorizado');
-    case '404':
-      print('No encontrado');
-    case '500':
-      print('Error del servidor');
+  switch (letraNota) {
+    case 'A':
+      print('Excelente');
+      break;
+    case 'B':
+      print('Bien');
+      break;
+    case 'C':
+      print('Suficiente');
+      break;
+    case 'D':
+      print('Insuficiente');
+      break;
+    case 'F':
+      print('Reprobado');
+      break;
     default:
-      print('Código desconocido');
+      print('Sin calificación');
   }
-  String codigoHttp = '404';
 
-  String descripcion = switch (codigoHttp) {
-    '200' => 'OK — solicitud exitosa',
-    '201' => 'Created — recurso creado',
-    '204' => 'No Content — sin contenido',
-    '400' => 'Bad Request — datos inválidos',
-    '401' => 'Unauthorized — sin autenticación',
-    '403' => 'Forbidden — sin permiso',
-    '404' => 'Not Found — recurso no existe',
-    '500' => 'Internal Server Error',
-    '503' => 'Service Unavailable',
-    _     => 'Código HTTP desconocido',  // _ es el caso por defecto
+  String codigoNota = '85';
+
+  String descripcion = switch (codigoNota) {
+    '90' => 'Sobresaliente',
+    '85' => 'Notable',
+    '75' => 'Bien',
+    '65' => 'Suficiente',
+    '50' => 'Insuficiente',
+    _    => 'Calificación desconocida',
   };
   print(descripcion);
 
-  int codigoNumerico = 404;
+  int notaNumerica = 85;
 
-  // Múltiples valores en una rama con ||
-  String categoria = switch (codigoNumerico) {
-    200 || 201 || 204       => 'Éxito (2xx)',
-    301 || 302 || 307       => 'Redirección (3xx)',
-    400 || 401 || 403 || 404 => 'Error del cliente (4xx)',
-    500 || 502 || 503       => 'Error del servidor (5xx)',
-    _                       => 'Desconocido',
+  String categoria = switch (notaNumerica) {
+    int n when n >= 90 => 'A - Excelente',
+    int n when n >= 80 => 'B - Muy bien',
+    int n when n >= 70 => 'C - Bien',
+    int n when n >= 60 => 'D - Suficiente',
+    _                  => 'F - Reprobado',
   };
 
-  print(categoria);  // Error del cliente (4xx)
+  print(categoria);
 
-  // Guards — condición adicional con 'when'
-  double temperatura = 39.2;
+  double asistencia = 92.5;
 
-  String alerta = switch (temperatura) {
-    double t when t >= 40.0 => '🚨 CRÍTICO — llame a emergencias',
-    double t when t >= 38.5 => '🔴 FIEBRE ALTA — consulte médico',
-    double t when t >= 37.5 => '🟡 FIEBRE LEVE — descanse',
-    double t when t >= 36.0 => '🟢 NORMAL',
-    _                       => '🔵 HIPOTERMIA — abrígese',
+  String estado = switch (asistencia) {
+    double a when a >= 95.0 => 'Asistencia perfecta',
+    double a when a >= 85.0 => 'Asistencia aceptable',
+    double a when a >= 75.0 => 'Asistencia baja',
+    _                      => 'Asistencia insuficiente',
   };
 
-  print(alerta);
+  print(estado);
 }

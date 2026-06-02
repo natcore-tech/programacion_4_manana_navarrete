@@ -31,15 +31,13 @@ void imprimirSeparador(String titulo) {
 }
 
 void main() {
-  print(sumar(5, 3));          // 8
-  print(multiplicar(4, 6));    // 24
-  imprimirSeparador('Inicio'); // ─── Inicio ───
-
-  print(formatearPrecio(1299.9));  // $1299.90
-  print(formatearPrecioSinTipo(1299.9));  // $1299.90
-
-  print(construirUrl('api.ejemplo.com', '/usuarios'));          // https://api.ejemplo.com/usuarios
-  print(construirUrl('api.ejemplo.com', '/usuarios', 8080));   // https://api.ejemplo.com:8080/usuarios
-  print(construirUrlV2('api.ejemplo.com', '/productos'));       // https://api.ejemplo.com:443/productos
+  imprimirSeparador('Registro de Notas');
+  print('Alumno: Juan Pérez');
+  print('Parcial 1: ${sumar(40, 45)}');
+  print('Parcial 2: ${sumar(42, 43)}');
+  print('Proyecto: ${sumar(20, 30)}');
+  print('Promedio (ponderado ejemplo): ${multiplicar(85, 1)}');
+  print('Acceder al sistema: ${construirUrl('notas.universidad.edu', '/alumnos')}');
+  imprimirSeparador('Fin de Registro');
 
 }

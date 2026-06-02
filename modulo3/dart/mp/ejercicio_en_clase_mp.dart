@@ -2,31 +2,32 @@ import 'dart:io';
 
 void main() {
   
-  int acum = 0;
-
-  int piezas = 0;
-  
+}
+  int total = 0;
+  int contador = 0;
 
   while (true) {
 
-    print('Ingrese las piezas producidas:');
-    int piezas = int.parse(stdin.readLineSync()!);
+    print('Ingrese la nota del estudiante:');
+    int nota = int.parse(stdin.readLineSync()!);
+    total += nota;
+    contador += 1;
 
-    print('Desea terminar el bucle 1 o 0:');
+    print('¿Desea terminar el registro? 1=si 0=no:');
     int terminar = int.parse(stdin.readLineSync()!);
 
-    if (terminar ==  1) {
-        break;
-    };
-    
-    
+    if (terminar == 1) {
+      break;
+    }
+
   }
 
-  if (piezas < 50) {
-        print('Produccion Adecuada');
-    } else {
-        print('Produccion Baja');
-    };
+  double promedio = contador > 0 ? total / contador : 0;
 
+  if (promedio >= 60) {
+    print('Promedio: ${promedio.toStringAsFixed(2)} - Estado: Aprobado');
+  } else {
+    print('Promedio: ${promedio.toStringAsFixed(2)} - Estado: Reprobado');
+  }
 
 }

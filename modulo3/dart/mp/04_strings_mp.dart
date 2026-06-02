@@ -1,37 +1,27 @@
 void main() {
-  final nombre = 'Ana';
-  final edad   = 28;
+  final estudiante = 'Ana';
+  final notas = [7.5, 8.0, 6.0];
 
-  // Interpolación con $ (igual que en Kotlin)
-  print('Hola, $nombre');                    // Hola, Ana
+  print('Registro de notas de $estudiante');
 
-  // Expresión con ${ }
-  print('${nombre.toUpperCase()} tiene ${edad + 1} años el próximo año');
+  final promedio = notas.reduce((a, b) => a + b) / notas.length;
 
-  // String multilinea con triple comillas
-  final tarjeta = '''
-Nombre: $nombre
-Edad:   $edad
-Mayor:  ${edad >= 18 ? 'Sí' : 'No'}
-  ''';
-  print(tarjeta);
+  final reporte = '''
+Estudiante: $estudiante
+Notas:      ${notas.join(', ')}
+Promedio:   ${promedio.toStringAsFixed(2)}
+Estado:     ${promedio >= 6.0 ? 'Aprobado' : 'Reprobado'}
+''';
 
-  // Raw string — ignora el escape y la interpolación
-  final ruta = r'C:\Users\Ana\Documents';  // el \ no se interpreta
-  print(ruta);
+  print(reporte);
 
-  // Concatenación (menos idiomático — preferir interpolación)
-  final saludo = 'Hola, ' + nombre + '!';
+  final curso = r'Curso: Programación 4 - Módulo 3';
+  print(curso);
 
-  // Métodos útiles de String
-  print('flutter'.toUpperCase());           // FLUTTER
-  print('  Flutter  '.trim());              // Flutter
-  print('Flutter'.contains('lut'));         // true
-  print('Flutter'.replaceAll('t', 'T'));    // FluTTer
-  print('a,b,c'.split(','));                // [a, b, c]
-  print('Flutter'.substring(0, 4));         // Flut
-  print('Flutter'.startsWith('Flu'));       // true
-  print('abc'.padLeft(5, '0'));             // 00abc
+  final saludo = 'Buenas, ' + estudiante + '!';
+  print(saludo);
+
+  print(estudiante.toUpperCase());
+  print('  ${estudiante}  '.trim());
+  print('Notas válidas: ${notas.every((n) => n >= 0 && n <= 10)}');
 }
-
-no amor tranquila chi 

@@ -1,16 +1,13 @@
 void main() {
-  // for con índice — cuando necesitas el número de iteración
   for (int i = 0; i < 5; i++) {
-    print('Iteración $i');
+    print('Alumno ${i + 1} registrado');
   }
 
-  // for con paso distinto
   for (int i = 0; i <= 100; i += 25) {
-    print('Progreso: $i%');
+    print('Evaluación parcial: $i%');
   }
 
-  // for decreciente
   for (int i = 5; i >= 1; i--) {
-    print('Cuenta regresiva: $i');
+    print('Corrección pendiente para alumno ${i}');
   }
 }

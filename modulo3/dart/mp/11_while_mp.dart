@@ -1,27 +1,33 @@
 void main() {
-  // while — comprueba la condición ANTES de ejecutar
-  int paquetes = 0;
-  int buffer   = 1024;  // bytes disponibles
+  int registrados = 0;
+  int capacidad = 10;
+  final List<Student> registro = [];
 
-  while (buffer > 0) {
-    final tamano = buffer > 256 ? 256 : buffer;
-    paquetes++;
-    buffer -= tamano;
-    print('Paquete $paquetes: $tamano bytes (restante: $buffer)');
+  while (capacidad > 0) {
+    final nombre = 'Alumno ${registrados + 1}';
+    final nota = 5.0 + (registrados % 6) * 0.8;
+    registrados++;
+    capacidad--;
+    registro.add(Student(nombre, nota));
+    print('Registrado: $nombre - Nota: ${nota.toStringAsFixed(1)} (restantes: $capacidad)');
   }
 
-  // do-while — ejecuta AL MENOS UNA VEZ antes de comprobar
   int reintentos = 0;
-  bool conexionEstablecida = false;
+  bool cierreCompleto = false;
 
   do {
     reintentos++;
-    print('Intento de conexión #$reintentos...');
-    // Simular que conecta en el 3er intento
-    if (reintentos == 3) conexionEstablecida = true;
-  } while (!conexionEstablecida && reintentos < 5);
+    print('Cierre de actas: intento #$reintentos');
+    if (reintentos == 2) cierreCompleto = true;
+  } while (!cierreCompleto && reintentos < 4);
 
-  print(conexionEstablecida
-      ? 'Conectado tras $reintentos intentos'
-      : 'No se pudo conectar');
+  print(cierreCompleto
+      ? 'Actas cerradas tras $reintentos intentos. Total registros: ${registro.length}'
+      : 'No se pudo cerrar las actas');
+}
+
+class Student {
+  final String name;
+  final double grade;
+  Student(this.name, this.grade);
 }

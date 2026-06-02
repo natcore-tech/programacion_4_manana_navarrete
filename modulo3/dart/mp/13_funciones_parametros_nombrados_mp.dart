@@ -6,22 +6,32 @@ void configurarServidor({
   bool   ssl        = true,
   int    timeoutSeg = 30,
 }) {
-  final protocolo = ssl ? 'https' : 'http';
-  print('Conectando a $protocolo://$host:$puerto (timeout: ${timeoutSeg}s)');
+  final estado = ssl ? 'APROBADO' : 'REPROBADO';
+  print('Registro: Estudiante $host - Nota: $puerto - $estado (procesado en ${timeoutSeg}s)');
 }
 
 void main() {
   // Los nombrados pueden pasarse en cualquier orden
   configurarServidor(
-    host:       'db.miempresa.com',
-    puerto:     5432,
-    ssl:        false,
-    timeoutSeg: 60,
+    host:       'María Pérez',
+    puerto:     85,
+    ssl:        true,
+    timeoutSeg: 2,
   );
 
   // Solo los obligatorios — los opcionales toman su valor por defecto
   configurarServidor(
-    host:   'api.miempresa.com',
-    puerto: 443,
+    host:   'Juan López',
+    puerto: 67,
   );
+}
+
+class Estudiante {
+  final String nombre;
+  final int nota;
+
+  Estudiante(this.nombre, this.nota);
+
+  @override
+  String toString() => '$nombre: $nota';
 }

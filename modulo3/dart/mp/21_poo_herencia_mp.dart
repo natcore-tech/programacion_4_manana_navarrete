@@ -1,45 +1,43 @@
 // Clase base — comportamiento y datos comunes
-class Animal {
+class Estudiante {
   final String nombre;
-  final int    edadAnios;
+  final double promedio;
 
-  Animal(this.nombre, this.edadAnios);
+  Estudiante(this.nombre, this.promedio);
 
-  // Método que cada subclase debe especializar
   String hacerSonido() => '...';
 
-  // Método común — reutilizado sin cambios por todas las subclases
   void presentarse() {
-    print('Soy $nombre, tengo $edadAnios años y hago: ${hacerSonido()}');
+    print('Estudiante $nombre tiene promedio $promedio y estado: ${hacerSonido()}');
   }
 }
 
 // HERENCIA: Perro y Gato reutilizan Animal y lo especializan
-class Perro extends Animal {
-  Perro(super.nombre, super.edadAnios);
+class AlumnoRegular extends Estudiante {
+  AlumnoRegular(super.nombre, super.promedio);
 
   @override
-  String hacerSonido() => '¡Guau!';
+  String hacerSonido() => promedio >= 3.0 ? 'Aprobado' : 'Reprobado';
 
-  void buscarPelota() => print('$nombre busca la pelota 🎾');
+  void buscarPelota() => print('$nombre registró una nueva nota.');
 }
 
-class Gato extends Animal {
-  Gato(super.nombre, super.edadAnios);
+class AlumnoHonores extends Estudiante {
+  AlumnoHonores(super.nombre, super.promedio);
 
   @override
-  String hacerSonido() => '¡Miau!';
+  String hacerSonido() => promedio >= 4.5 ? 'Sobresaliente' : 'En buen camino';
 
-  void trepar() => print('$nombre trepa al árbol 🌳');
+  void trepar() => print('$nombre solicitó revisión de calificación.');
 }
 
 void main() {
-  final perro = Perro('Rex', 3);
-  final gato  = Gato('Misu', 5);
+  final alumno1 = AlumnoRegular('Rex', 3.2);
+  final alumno2 = AlumnoHonores('Misu', 4.8);
 
-  perro.presentarse();  // Soy Rex, tengo 3 años y hago: ¡Guau!
-  gato.presentarse();   // Soy Misu, tengo 5 años y hago: ¡Miau!
+  alumno1.presentarse();
+  alumno2.presentarse();
 
-  perro.buscarPelota();
-  gato.trepar();
+  alumno1.buscarPelota();
+  alumno2.trepar();
 }

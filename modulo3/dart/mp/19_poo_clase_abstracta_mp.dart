@@ -1,38 +1,35 @@
-// abstract class define el contrato — QUÉ puede hacer cualquier Forma
-abstract class Forma {
+abstract class RegistroNota {
   String get nombre;
-  double calcularArea();     // cada forma lo implementa a su manera
+  double calcularArea();
   double calcularPerimetro();
 
-  // Método concreto construido sobre la abstracción
   void describir() {
-    print('$nombre — área: ${calcularArea().toStringAsFixed(2)}, '
-          'perímetro: ${calcularPerimetro().toStringAsFixed(2)}');
+    print('$nombre - nota final: ${calcularArea().toStringAsFixed(2)}, '
+          'promedio acumulado: ${calcularPerimetro().toStringAsFixed(2)}');
   }
 }
 
-// Implementaciones concretas — el CÓMO es específico de cada clase
-class Circulo extends Forma {
-  final double radio;
-  Circulo(this.radio);
+class NotaFinal extends RegistroNota {
+  final double nota;
+  NotaFinal(this.nota);
 
-  @override String get nombre => 'Círculo (r=$radio)';
-  @override double calcularArea()      => 3.1416 * radio * radio;
-  @override double calcularPerimetro() => 2 * 3.1416 * radio;
+  @override String get nombre => 'Nota final';
+  @override double calcularArea() => nota;
+  @override double calcularPerimetro() => nota;
 }
 
-class Rectangulo extends Forma {
-  final double ancho, alto;
-  Rectangulo(this.ancho, this.alto);
+class PromedioBimestre extends RegistroNota {
+  final double nota1, nota2;
+  PromedioBimestre(this.nota1, this.nota2);
 
-  @override String get nombre => 'Rectángulo (${ancho}x$alto)';
-  @override double calcularArea()      => ancho * alto;
-  @override double calcularPerimetro() => 2 * (ancho + alto);
+  @override String get nombre => 'Promedio bimestral';
+  @override double calcularArea() => (nota1 + nota2) / 2;
+  @override double calcularPerimetro() => nota1 + nota2;
 }
 
 void main() {
-  final formas = <Forma>[Circulo(5), Rectangulo(4, 7)];
-  for (final f in formas) {
-    f.describir();  // no importa qué tipo de Forma es
+  final registros = <RegistroNota>[NotaFinal(18), PromedioBimestre(15, 17)];
+  for (final registro in registros) {
+    registro.describir();
   }
 }
