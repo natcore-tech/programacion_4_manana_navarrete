@@ -36,7 +36,7 @@ object CatalogoProductos {
 
     // ABSTRACCIÓN: interfaz pública limpia — solo lectura de listas
     fun listar(): List<Producto>              = productos.toList()
-    fun disponibles(): List<Producto>         = productos.filter { it.disponible }
+    fun disponibles(): List<Producto>         = productos.filter { it.aprobado }
     fun porCategoria(id: Int): List<Producto> = productos.filter { it.categoria.id == id }
     fun buscar(query: String): List<Producto> =
         productos.filter { it.nombre.contains(query, ignoreCase = true) }

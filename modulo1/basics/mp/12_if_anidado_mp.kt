@@ -3,12 +3,12 @@
 fun main() {
   println("Registro de Notas")
   println("Ingreso de Calificaciones")
-  println("Nombre del estudiante?")
+  println("¿Tiene antecedentes académicos? (si/no)")
   val tieneAntecedentes=readLine()?.trim()?.lowercase()?:0
   println("Nota (0-100)")
   val frecuencia=readLine()?.toIntOrNull()?:0
   
-  if(tieneAntecedentes){
+  if(tieneAntecedentes == "si"){
       println("Estudiante registrado")
       if(frecuencia<50){
         println("Reprobado")

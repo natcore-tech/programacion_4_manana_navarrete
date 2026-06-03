@@ -32,18 +32,18 @@ interface EnviadorNotificacion {
 
 class ServicioEmail : EnviadorNotificacion {
     override val nombre = "Notas"
-    override fun enviar(n: Notificacion): Boolean {
-        if (n !is Notificacion.Nota) return false
-        println("  [REGISTRO] → ${n.estudiante}")
+    override fun enviar(notificacion: Notificacion): Boolean {
+        if (notificacion !is Notificacion.Nota) return false
+        println("  [REGISTRO] → ${notificacion.estudiante}")
         return true
     }
 }
 
 class ServicioPush : EnviadorNotificacion {
     override val nombre = "Seguimiento"
-    override fun enviar(n: Notificacion): Boolean {
-        if (n !is Notificacion.Recuperacion) return false
-        println("  [SEGUIMIENTO] → ${n.estudiante}")
+    override fun enviar(notificacion: Notificacion): Boolean {
+        if (notificacion !is Notificacion.Recuperacion) return false
+        println("  [SEGUIMIENTO] → ${notificacion.estudiante}")
         return true
     }
 }

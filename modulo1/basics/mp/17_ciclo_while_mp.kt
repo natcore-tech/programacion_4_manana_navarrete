@@ -4,14 +4,13 @@ fun main() {
     println("Sistema de Registro de Notas")
   
  print("Registro de Alumnos (Do While)")
-  contador = 1
+  var contador = 1
   do {
       println(contador)
       contador++;
   }while(contador <= 5)
   
     println("Procesamiento de Notas (Break/Continue)")
-  contador = 1
   while(contador <= 10){
       contador ++;
       if(contador==3) continue

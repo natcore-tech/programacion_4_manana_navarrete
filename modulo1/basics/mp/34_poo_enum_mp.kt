@@ -1,23 +1,23 @@
-enum class Calificacion(val descripcion: String, val esAprobado: Boolean) {
-    INSUFICIENTE ("Nota muy baja",      false),
-    DEFICIENTE   ("Nota baja",          false),
-    SUFICIENTE   ("Nota aprobatoria",   true),
-    NOTABLE      ("Nota buena",         true),
-    SOBRESALIENTE("Nota excelente",     true);
+enum class Estado(val descripcion: String, val esTerminal: Boolean) {
+    PENDIENTE  ("Aún no inicia",      false),
+    EN_PROCESO ("Siendo procesado",   false),
+    COMPLETADO ("Finalizado",         true),
+    FALLIDO    ("Ocurrió un error",   true),
+    CANCELADO  ("Abortado",           true); // Recuerda el punto y coma
 
-    fun puedeTransicionarA(siguiente: Calificacion): Boolean = when (this) {
-        INSUFICIENTE -> siguiente == DEFICIENTE || siguiente == SUFICIENTE
-        DEFICIENTE   -> siguiente == SUFICIENTE || siguiente == NOTABLE
-        else         -> false
+    fun puedeTransicionarA(siguiente: Estado): Boolean = when (this) {
+        COMPLETADO, FALLIDO, CANCELADO -> false
+        EN_PROCESO -> siguiente == COMPLETADO || siguiente == FALLIDO || siguiente == CANCELADO
+        PENDIENTE  -> siguiente == EN_PROCESO || siguiente == CANCELADO
     }
 }
 
 fun main() {
     val estado = Estado.EN_PROCESO
-    println(estado.descripcion)  // Siendo procesado
-    println(estado.esTerminal)   // false
+    println(estado.descripcion)  
+    println(estado.esTerminal)   
 
-    // when exhaustivo — sin else porque el compilador conoce todos los casos
+    // when exhaustivo
     val icono = when (estado) {
         Estado.PENDIENTE   -> "⏰"
         Estado.EN_PROCESO  -> "⏳"
@@ -25,7 +25,7 @@ fun main() {
         Estado.FALLIDO     -> "❌"
         Estado.CANCELADO   -> "🚫"
     }
-    println(icono)  // ⏳
+    println(icono) 
 
-    println(estado.puedeTransicionarA(Estado.COMPLETADO))  // true
+    println(estado.puedeTransicionarA(Estado.COMPLETADO)) 
 }
