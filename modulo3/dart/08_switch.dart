@@ -17,7 +17,6 @@ void main() {
     default:
       print('Código desconocido');
   }
-  String codigoHttp = '404';
 
   String descripcion = switch (codigoHttp) {
     '200' => 'OK — solicitud exitosa',

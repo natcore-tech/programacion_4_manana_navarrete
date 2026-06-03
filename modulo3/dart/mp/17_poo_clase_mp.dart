@@ -42,10 +42,15 @@ void main() {
   );
 
   estudiante.conectar();
-  final estado = estudiante.estado;
-  final resumen = estudiante.resumen();
-  final descripcion = estudiante.toString();
+
+  print('--- Prueba inicial ---');
+  print('Estado actual: ${estudiante.estado}');
+  print('Resumen: ${estudiante.resumen()}');
+  print('Descripción: ${estudiante.toString()}');
 
   estudiante.estadoEncendido = false;
-  final activo = estudiante.encendido;
+  
+  print('\n--- Después de apagar/desconectar ---');
+  print('¿Está encendido/matriculado?: ${estudiante.encendido}');
+  print('Nuevo estado: ${estudiante.estado}');
 }

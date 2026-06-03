@@ -22,9 +22,7 @@ void main() {
   // Forma más concisa con ??
   String display2 = ciudad?.toUpperCase() ?? 'Sin ciudad';
   print(display2);  // Sin ciudad
-}
 
-void main() {
   String? nombre;
 
   // Sin verificar — error de compilación

@@ -1,6 +1,12 @@
 int doblar(int n)  => n * 2;
 int triplicar(int n) => n * 3;
 
+class Estudiante {
+    String nombre;
+    int nota;
+    Estudiante(this.nombre, this.nota);
+  }
+
 void main() {
   int Function(int) operacion;
 
@@ -12,11 +18,6 @@ void main() {
 
   final transformaciones = <int Function(int)>[doblar, triplicar];
 
-  class Estudiante {
-    String nombre;
-    int nota;
-    Estudiante(this.nombre, this.nota);
-  }
 
   final estudiantes = <Estudiante>[
     Estudiante('Ana', 7),

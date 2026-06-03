@@ -16,7 +16,7 @@ void main() {
   }
 
   // for-in sobre caracteres de un String
-  for (final caracter in 'Dart') {
+  for (final caracter in 'Dart'.split('')) {
     print(caracter);
   }
 }

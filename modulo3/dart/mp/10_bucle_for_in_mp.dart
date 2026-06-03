@@ -12,7 +12,7 @@ void main() {
     print('Alumno ${entrada.key} tiene nota ${entrada.value}');
   }
 
-  for (final letra in 'Promedio') {
+  for (final letra in 'Promedio'.split('')) {
     print(letra);
   }
 }
