@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.techdash"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -56,4 +56,18 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
 
+    val cameraxVersion = "1.4.1"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-video:$cameraxVersion")
+
+    // Media3 / ExoPlayer para reproducción de video
+    val media3Version = "1.5.1"
+    implementation("androidx.media3:media3-exoplayer:$media3Version")
+    implementation("androidx.media3:media3-ui:$media3Version")
+
+    // Coil para mostrar imágenes
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }

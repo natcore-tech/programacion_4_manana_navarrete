@@ -28,6 +28,7 @@ data class ConfigPermiso(
     val obligatorio:  Boolean = true
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaPermisos(onTodosConcedidos: () -> Unit = {}) {
     val context = LocalContext.current
