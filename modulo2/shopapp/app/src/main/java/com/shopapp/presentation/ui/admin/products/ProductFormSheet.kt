@@ -26,6 +26,7 @@ fun ProductFormSheet(
     formState:  ProductFormState,
     onSave:     (ProductPayload) -> Unit,
     onDismiss:  () -> Unit,
+    onImageUpdated: () -> Unit = {},
 ) {
     val isEdit = initial != null
 
@@ -70,6 +71,20 @@ fun ProductFormSheet(
                 fontWeight = FontWeight.Bold,
                 color      = TextPrimary,
             )
+
+            if (isEdit && initial != null) {
+                ProductImageSection(
+                    productId       = initial.id,
+                    currentImageUrl = initial.imageUrl,
+                    isStaff         = true,         // solo staff llega hasta aquí
+                    onImageUpdated  = onImageUpdated,
+                    modifier        = Modifier
+                        .fillMaxWidth()
+                        .height(220.dp),
+                )
+                Spacer(Modifier.height(8.dp))
+            }
+
 
             // Error global
             if (formState is ProductFormState.Error) {
