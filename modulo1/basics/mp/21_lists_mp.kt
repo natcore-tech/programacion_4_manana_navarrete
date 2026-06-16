@@ -1,0 +1,46 @@
+fun main() {
+  println("Sistema de Registro de Notas - Notas Inmutables")
+    val notas =listOf(85, 92, 78, 92, 88)
+  println("Total de notas registradas: ${notas.size}")
+  println("Primera nota: ${notas[0]}")
+  println("Nota más alta: ${notas.first()}")
+  println("Nota más baja: ${notas.last()}")
+  
+  println("Nota en posición 2: ${notas.get(2)}")
+  println("Posición de la nota 92: ${notas.indexOf(92)}")
+  println("¿Existe la nota 78?: ${notas.contains(78)}")
+  println("¿Está la nota 92 en el registro?: ${92 in notas}")
+ println("Notas del rango 1 a 3: ${notas.subList(1,3)}")
+ println("Primeras 2 notas: ${notas.take(2)}")
+ println("Notas sin las tres primeras: ${notas.drop(3)}")
+ println("Últimas dos notas: ${notas.takeLast(2)}")
+  for(nota in notas){
+    println("Nota registrada: $nota")
+  }
+  
+   println("Sistema de Registro de Notas - Notas Mutables")
+    val calificaciones =mutableListOf(95, 87, 79, 91) 
+    println("Calificaciones actuales: $calificaciones")
+    calificaciones.add(84)
+    println("Después de agregar: $calificaciones")
+    calificaciones.add(0, 88)
+    println("Después de insertar al inicio: $calificaciones")
+    calificaciones.remove(84)
+    println("Después de eliminar: $calificaciones")
+    calificaciones[1]=90
+    println("Después de actualizar: $calificaciones")
+    
+    println("Sistema de Cola de Espera de Estudiantes")
+    val cola = ArrayDeque<Int>()
+    println("Cola inicial: $cola")
+    cola.addFirst(1001)
+    println("Estudiante agregado al inicio: $cola")
+    cola.addLast(1002)
+    println("Estudiante agregado al final: $cola")
+    cola.addLast(1003)
+    println("Nueva entrada: $cola")
+    cola.removeFirst()
+    println("Estudiante atendido (removido del inicio): $cola")    
+    cola.removeLast()
+    println("Estudiante removido del final: $cola")
+}

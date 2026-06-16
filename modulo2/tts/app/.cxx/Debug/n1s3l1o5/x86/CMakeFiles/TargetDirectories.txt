@@ -1,0 +1,3 @@
+C:/Users/Nat/Desktop/Universidad/programacion_4_manana_navarrete/modulo2/tts/app/.cxx/Debug/n1s3l1o5/x86/CMakeFiles/tts.dir
+C:/Users/Nat/Desktop/Universidad/programacion_4_manana_navarrete/modulo2/tts/app/.cxx/Debug/n1s3l1o5/x86/CMakeFiles/edit_cache.dir
+C:/Users/Nat/Desktop/Universidad/programacion_4_manana_navarrete/modulo2/tts/app/.cxx/Debug/n1s3l1o5/x86/CMakeFiles/rebuild_cache.dir

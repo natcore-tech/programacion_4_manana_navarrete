@@ -1,0 +1,28 @@
+fun main() {
+    println("Registro de Notas - Conjuntos Inmutables")
+    val numeros =setOf(1,2,3,4,8,4,1,3)
+    println("Notas registradas: ${numeros}")
+    println("Operaciones entre grupos de notas")
+    val pares =setOf(2,4,6,8,10)
+    val multiplos3 =setOf(3,6,9,12)
+    println("Notas parciales: ${pares}")
+    println("Notas finales: ${multiplos3}")
+    println("Union de notas: ${pares union multiplos3}")
+    println("Intersección de notas: ${pares intersect multiplos3}")
+    println("Diferencia de notas: ${pares subtract multiplos3}")
+    println("Notas parciales (sin cambios): ${pares}")
+    println("Notas finales (sin cambios): ${multiplos3}")
+
+    println("Registro de Estudiantes - Conjunto Mutable")
+    val tags =mutableSetOf("kotlin", "java", "reactnative")
+    println("Estudiantes: $tags")
+    tags.add("kotlin")
+    println("Intento de agregar estudiante existente: $tags")
+    tags.add("javascript")
+    println("Agregado nuevo estudiante: $tags")
+    tags.remove("java")
+    println("Estudiante eliminado: $tags")
+    println("Existe 'kotlin' en el registro: ${"kotlin" in tags}")
+    println("Existe 'java' en el registro: ${"java" in tags}")
+    
+  }
