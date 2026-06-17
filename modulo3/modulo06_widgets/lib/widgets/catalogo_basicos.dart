@@ -31,6 +31,7 @@ class CatalogoBasicos extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
+          
 
           // ── Alineación y desbordamiento ───────────────────────────────────────
           SizedBox(
