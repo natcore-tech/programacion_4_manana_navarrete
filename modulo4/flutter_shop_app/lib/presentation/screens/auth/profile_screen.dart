@@ -151,7 +151,7 @@ class _LogoutButton extends StatelessWidget {
     child:  OutlinedButton.icon(
       onPressed: () => showDialog(
         context: context,
-        builder: (_) => AlertDialog(
+        builder: (dialogContext) => AlertDialog(
           backgroundColor: AppColors.surface,
           shape:           RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title:           const Text('¿Cerrar sesión?',
@@ -163,12 +163,12 @@ class _LogoutButton extends StatelessWidget {
           actions: [
             TextButton(
  
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(dialogContext),
               child:     const Text('Cancelar'),
             ),
             TextButton(
               onPressed: () async {
-                Navigator.pop(context);
+                Navigator.pop(dialogContext);
                 await onConfirm();
               },
               child: const Text(
