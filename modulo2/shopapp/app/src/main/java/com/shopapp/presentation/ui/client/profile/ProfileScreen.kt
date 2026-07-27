@@ -8,6 +8,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,6 +24,7 @@ import com.shopapp.theme.*
 fun ProfileScreen(
     authViewModel: AuthViewModel,
     onLogout:      () -> Unit,
+    onSendNotification: () -> Unit = {},
 ) {
     val user by authViewModel.currentUser.collectAsState()
 
@@ -129,6 +132,36 @@ fun ProfileScreen(
                     if (i < 3) HorizontalDivider(color = BorderLight, thickness = 0.5.dp)
                 }
             }
+        }
+
+        if (user?.isStaff == true) {
+            Spacer(Modifier.height(16.dp))
+            HorizontalDivider(color = BorderLight, thickness = 0.5.dp)
+
+            ListItem(
+                headlineContent   = {
+                    Text("Enviar notificación", fontWeight = FontWeight.Medium)
+                },
+                supportingContent = {
+                    Text("Envía un correo a uno o todos los usuarios")
+                },
+                leadingContent    = {
+                    Icon(
+                        imageVector        = Icons.Default.Send,
+                        contentDescription = null,
+                        tint               = MaterialTheme.colorScheme.primary,
+                    )
+                },
+                trailingContent   = {
+                    Icon(
+                        imageVector        = Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = null,
+                    )
+                },
+                modifier = androidx.compose.foundation.clickable(onClick = onSendNotification),
+            )
+
+            HorizontalDivider(color = BorderLight, thickness = 0.5.dp)
         }
 
         Spacer(Modifier.height(24.dp))
