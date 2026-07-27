@@ -2,6 +2,7 @@
 package com.shopapp.presentation.ui.client.profile
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -158,7 +159,7 @@ fun ProfileScreen(
                         contentDescription = null,
                     )
                 },
-                modifier = androidx.compose.foundation.clickable(onClick = onSendNotification),
+                modifier = Modifier.clickable(onClick = onSendNotification),
             )
 
             HorizontalDivider(color = BorderLight, thickness = 0.5.dp)

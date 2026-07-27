@@ -14,12 +14,14 @@ import com.shopapp.domain.repository.ProductRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class ProductRepositoryImpl @Inject constructor(
     private val api: ProductApi,
+    @ApplicationContext private val context: Context,
 ) : ProductRepository {
 
     override suspend fun getProducts(filters: ProductFilters): Result<Pair<List<Product>, Int>> =

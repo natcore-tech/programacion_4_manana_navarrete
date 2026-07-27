@@ -9,6 +9,13 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+kapt {
+    javacOptions {
+        option("-source", "17")
+        option("-target", "17")
+    }
+}
+
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 
