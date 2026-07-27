@@ -1,8 +1,6 @@
 // data/repository/ProductRepositoryImpl.kt
 package com.shopapp.data.repository
 
-import android.net.Uri
-import android.content.Context
 import com.shopapp.data.remote.api.ProductApi
 import com.shopapp.data.remote.dto.RestockRequestDto
 import com.shopapp.data.remote.dto.toDomain
@@ -11,15 +9,19 @@ import com.shopapp.domain.model.Product
 import com.shopapp.domain.model.ProductFilters
 import com.shopapp.domain.model.ProductPayload
 import com.shopapp.domain.repository.ProductRepository
+import javax.inject.Inject
+import javax.inject.Singleton
+import android.content.Context
+import android.net.Uri
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import javax.inject.Inject
-import javax.inject.Singleton
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Singleton
 class ProductRepositoryImpl @Inject constructor(
     private val api: ProductApi,
+    @ApplicationContext private val context: Context
 ) : ProductRepository {
 
     override suspend fun getProducts(filters: ProductFilters): Result<Pair<List<Product>, Int>> =
@@ -97,13 +99,15 @@ class ProductRepositoryImpl @Inject constructor(
             }
         }
 
-    internal fun Uri.toMultipart(context: Context, fieldName: String): MultipartBody.Part {
-        val resolver = context.contentResolver
-        val mimeType = resolver.getType(this) ?: "image/jpeg"
-        val bytes = resolver.openInputStream(this)?.readBytes()
-            ?: error("No se pudo leer el archivo seleccionado")
-        val requestBody = bytes.toRequestBody(mimeType.toMediaTypeOrNull())
-        val fileName = "upload.${mimeType.substringAfterLast('/')}"
-        return MultipartBody.Part.createFormData(fieldName, fileName, requestBody)
-    }
+
 }
+internal fun Uri.toMultipart(context: Context, fieldName: String): MultipartBody.Part {
+    val resolver    = context.contentResolver
+    val mimeType    = resolver.getType(this) ?: "image/jpeg"
+    val bytes       = resolver.openInputStream(this)?.readBytes()
+        ?: error("No se pudo leer el archivo seleccionado")
+    val requestBody = bytes.toRequestBody(mimeType.toMediaTypeOrNull())
+    val fileName    = "upload.${mimeType.substringAfterLast('/')}"
+    return MultipartBody.Part.createFormData(fieldName, fileName, requestBody)
+}
+
