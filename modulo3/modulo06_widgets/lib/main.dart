@@ -19,12 +19,13 @@ import 'package:modulo06_widgets/widgets/servicio_estado.dart';
 // └──────────────────────────────────────────────────────────────────┘
 const int paso = 7;
 
+
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
     colorScheme:  ColorScheme.fromSeed(
       seedColor:  Colors.deepPurple,          // ← cambia aquí
-      brightness: Brightness.dark,     // ← Brightness.dark para modo oscuro
+      brightness: Brightness.dark,     
     ),
     useMaterial3: true,
   ),
