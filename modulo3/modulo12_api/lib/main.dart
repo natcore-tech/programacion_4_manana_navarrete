@@ -50,6 +50,8 @@ final _router = GoRouter(
   routes: [
     GoRoute(path: '/', builder: (_, __) => const PantallaMenu()),
 
+    GoRoute(path: '/paso1', builder: (_, __) => const PantallaPaso1()),
+    GoRoute(path: '/paso1users', builder: (_, __) => const PantallaPaso1User()),
 
     GoRoute(path: '/paso2', builder: (_, __) => const PantallaPaso2()),
     GoRoute(path: '/paso2users', builder: (_, __) => const PantallaPaso2Users()),

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
-class PantallaPaso1 extends StatelessWidget {
-  const PantallaPaso1({super.key});
+class PantallaPaso1User extends StatelessWidget {
+  const PantallaPaso1User({super.key});
 
-  Future<Map<String, dynamic>> _fetchTodo() async {
+  
+  Future<Map<String, dynamic>> _fetchUser() async {
     final res = await http.get(
-      Uri.parse('https://jsonplaceholder.typicode.com/todos/1'),
+      Uri.parse('https://jsonplaceholder.typicode.com/users/1'),
     );
     return jsonDecode(res.body) as Map<String, dynamic>;
   }
@@ -22,13 +23,14 @@ class PantallaPaso1 extends StatelessWidget {
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
-          future: _fetchTodo(),
+         
+          future: _fetchUser(),
           builder: (context, snap) {
-            // Estado 1: esperando respuesta
+           
             if (snap.connectionState != ConnectionState.done) {
               return const CircularProgressIndicator();
             }
-            // Estado 2: error de red
+          
             if (snap.hasError) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -40,8 +42,8 @@ class PantallaPaso1 extends StatelessWidget {
                 ],
               );
             }
-            // Estado 3: datos disponibles
-            final todo = snap.data!;
+            
+            final user = snap.data!;
             return Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -49,21 +51,21 @@ class PantallaPaso1 extends StatelessWidget {
                 children: [
                   const Icon(Icons.task_alt, size: 48, color: Colors.green),
                   const SizedBox(height: 16),
-                  Text('ID: ${todo['id']}',
+                 
+                  Text('Nombre: ${user['name']}',
                       style: const TextStyle(fontSize: 14, color: Colors.grey)),
                   const SizedBox(height: 8),
+                  
                   Text(
-                    todo['title'] as String,
+                    user['email'] as String,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
                   Chip(
-                    label: Text(
-                      (todo['completed'] as bool) ? 'Completada ✓' : 'Pendiente',
-                    ),
-                    backgroundColor: (todo['completed'] as bool)
+                    label: Text(user['website']),
+                    backgroundColor: (user['website'] as String).isNotEmpty
                         ? Colors.green[100]
                         : Colors.orange[100],
                   ),
