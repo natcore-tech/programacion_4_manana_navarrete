@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Nat\\Desktop\\Universidad\\programacion_4_manana_navarrete\\modulo2\\tts\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\Nat\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\Nat\\Desktop\\Universidad\\programacion_4_manana_navarrete\\modulo2\\tts\\app\\.cxx\\Debug\\n1s3l1o5\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\Nat\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\Nat\\Desktop\\Universidad\\programacion_4_manana_navarrete\\modulo2\\tts\\app\\.cxx\\Debug\\n1s3l1o5\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "tts::@6890427a1f51a3e7e1df": {
+      "artifactName": "tts",
+      "abi": "x86",
+      "output": "C:\\Users\\Nat\\Desktop\\Universidad\\programacion_4_manana_navarrete\\modulo2\\tts\\app\\build\\intermediates\\cxx\\Debug\\n1s3l1o5\\obj\\x86\\libtts.so",
+      "runtimeFiles": []
+    }
+  }
+}
