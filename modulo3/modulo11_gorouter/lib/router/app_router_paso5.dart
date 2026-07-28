@@ -1,7 +1,7 @@
 // lib/router/app_router_paso5.dart
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:modulo11_gorouter/screens/pantalla_dashboard.dart';
 import '../providers/auth_provider.dart';
 import '../screens/scaffold_con_nav.dart';
 import '../screens/pantalla_servidores.dart';
@@ -46,6 +46,10 @@ GoRouter appRouterPaso5(WidgetRef ref) => GoRouter(
         ),
         GoRoute(path: '/metricas', builder: (_, __) => const PantallaMetricas()),
         GoRoute(path: '/ajustes',  builder: (_, __) => const PantallaAjustes()),
+        GoRoute(
+          path:    '/dashboard',
+          builder: (_, __) => const PantallaDashboard(),
+        ),
       ],
     ),
     GoRoute(

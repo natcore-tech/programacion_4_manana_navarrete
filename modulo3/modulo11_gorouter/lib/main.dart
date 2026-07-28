@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modulo11_gorouter/providers/auth_provider.dart';
-import 'package:modulo11_gorouter/router/app_routerpaso5.dart';
+import 'package:modulo11_gorouter/router/app_router_paso4.dart';
+import 'package:modulo11_gorouter/router/app_router_paso5.dart';
 import 'package:modulo11_gorouter/router/approuterpaso2.dart';
+import 'package:modulo11_gorouter/router/approuterpaso3.dart';
 import 'router/app_router.dart';
 //import 'router/app_router_paso2.dart';
 //import 'router/app_router_paso3.dart';
@@ -40,8 +42,8 @@ class AppMonitoreo extends ConsumerWidget {
     final router = switch (paso) {
       1 => appRouter,
       2 => appRouterPaso2,
-      //3 => appRouterPaso3,
-      //4 => appRouterPaso4,
+      3 => appRouterPaso3,
+      4 => appRouterPaso4,
       5 => appRouterPaso5(ref),
       _ => appRouter,
     };
@@ -57,3 +59,5 @@ class AppMonitoreo extends ConsumerWidget {
     );
   }
 }
+
+
