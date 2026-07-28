@@ -1,19 +1,11 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/formulario_servidor.dart';
-import 'models/servidor_ssh.dart';
-import 'widgets/fila_servidor.dart';
-import 'screens/pantalla_servidores.dart';
-import 'screens/pantalla_busqueda.dart';
+import 'package:modulo09_formularios/models/servidor_ssh.dart';
+import 'package:modulo09_formularios/screens/pantalla_busqueda.dart';
+import 'package:modulo09_formularios/screens/pantalla_servidores.dart';
+import 'package:modulo09_formularios/widgets/fila_servidor.dart';
+import 'package:modulo09_formularios/widgets/formulario_servidor.dart';
 
-// ┌──────────────────────────────────────────────────────────────────┐
-// │  Cambia este número y guarda (Ctrl+S) para navegar entre pasos. │
-// │  1  Paso 1  TextField + TextEditingController + FocusNode       │
-// │  2  Paso 2  Form + TextFormField + validación                   │
-// │  3  Paso 3  Modelo + ListView.builder + ListTile acciones       │
-// │  4  Paso 4  GridView.builder + toggle lista/grid                │
-// │  5  Paso 5  SearchBar + filtrado en tiempo real                 │
-// └──────────────────────────────────────────────────────────────────┘
 const int paso = 5;
 
 void main() => runApp(MaterialApp(
@@ -30,13 +22,12 @@ void main() => runApp(MaterialApp(
     3 => const _Paso3(),
     4 => const PantallaServidores(),
     5 => const PantallaBusqueda(),
-
     _ => Scaffold(
         body: Center(child: Text('Paso $paso: crea el widget primero'))),
   },
 ));
 
-// ─── Paso 1 — vive en main.dart ────────────────────────────────────────
+// ─── Paso 1 ────────────────────────────────────────
 class _Paso1 extends StatefulWidget {
   const _Paso1();
   @override
@@ -63,7 +54,6 @@ class _Paso1State extends State<_Paso1> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-
     return Scaffold(
       appBar: AppBar(
         title:           const Text('Conexión SSH'),
@@ -146,13 +136,13 @@ class _Paso1State extends State<_Paso1> {
   }
 }
 
+// ─── Paso 2 ────────────────────────────────────────
 class _Paso2 extends StatelessWidget {
   const _Paso2();
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-
     return Scaffold(
       appBar: AppBar(
         title:           const Text('Nuevo servidor'),
@@ -177,6 +167,7 @@ class _Paso2 extends StatelessWidget {
   }
 }
 
+// ─── Paso 3 ────────────────────────────────────────
 class _Paso3 extends StatefulWidget {
   const _Paso3();
   @override
@@ -184,13 +175,15 @@ class _Paso3 extends StatefulWidget {
 }
 
 class _Paso3State extends State<_Paso3> {
-  final _servidores = [
+  // Nota: Si tus clases heredan de un modelo base común (ej. 'Servidor'), 
+  // cambia el tipo de la lista de 'dynamic' al nombre de la clase padre.
+  final List<dynamic> _servidores = [
     ServidorSSH(id:'1', nombre:'prod-web-01',  ip:'10.0.2.10',   puerto:22,   usuario:'deploy',   so:'Ubuntu 24.04', ssl:true,  favorito:true),
     ServidorSSH(id:'2', nombre:'prod-db-01',   ip:'10.0.2.20',   puerto:22,   usuario:'postgres', so:'Debian 12',    ssl:true),
     ServidorSSH(id:'3', nombre:'staging-api',  ip:'10.0.3.10',   puerto:2222, usuario:'ubuntu',   so:'Ubuntu 24.04', ssl:false),
     ServidorSSH(id:'4', nombre:'dev-sandbox',  ip:'192.168.1.5', puerto:22,   usuario:'vagrant',  so:'Alpine Linux', ssl:false),
-    ServidorSSH(id:'5', nombre:'Servicio',  ip:'192.168.1.5', puerto:22,   usuario:'servicio_web',  so:'Alpine Linux', ssl:false, favorito: true, servicio: true),
-
+   
+    ServiciosWeb(id1:'5', nombre:'servicio web', ip:'192.168.1.2', puerto:80,   usuario:'Danna Gonzalez', favorito: false),
   ];
 
   @override
@@ -210,21 +203,30 @@ class _Paso3State extends State<_Paso3> {
                 children: [
                   Icon(Icons.dns_outlined, size: 56, color: cs.onSurfaceVariant),
                   const SizedBox(height: 12),
-                  Text('Sin servidores',
-                      style: TextStyle(color: cs.onSurfaceVariant)),
+                  Text('Sin servidores', style: TextStyle(color: cs.onSurfaceVariant)),
                 ],
               ),
             )
           : ListView.separated(
               itemCount:        _servidores.length,
-              separatorBuilder: (_, __) =>
-                  const Divider(height: 1, indent: 72),
-              itemBuilder: (ctx, i) => FilaServidor(
-                servidor:   _servidores[i],
-                onFavorito: () => setState(() =>
-                    _servidores[i].favorito = !_servidores[i].favorito),
-                onEliminar: () => setState(() => _servidores.removeAt(i)),
-              ),
+              separatorBuilder: (_, __) => const Divider(height: 1, indent: 72),
+              itemBuilder: (ctx, i) {
+                final item = _servidores[i];
+                return FilaServidor(
+                  servidor: item,
+                  onFavorito: () {
+                    setState(() {
+                      // Modifica de manera segura basándose en la propiedad real del objeto
+                      item.favorito = !item.favorito;
+                    });
+                  },
+                  onEliminar: () {
+                    setState(() {
+                      _servidores.removeAt(i);
+                    });
+                  },
+                );
+              },
             ),
     );
   }
