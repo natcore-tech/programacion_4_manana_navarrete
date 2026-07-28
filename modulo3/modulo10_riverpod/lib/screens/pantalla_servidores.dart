@@ -1,7 +1,7 @@
 // lib/screens/pantalla_servidores.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/servidor_ssh.dart';
+import 'package:modulo10_riverpod/models/servidor_ssh.dart';
 import '../providers/servidores_provider.dart';
 
 class PantallaServidores extends ConsumerWidget {
