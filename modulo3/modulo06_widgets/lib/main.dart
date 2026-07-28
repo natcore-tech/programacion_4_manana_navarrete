@@ -17,15 +17,14 @@ import 'package:modulo06_widgets/widgets/servicio_estado.dart';
 // │  7  Paso 5   BuildContext                                        │
 // │  8  Paso 6   Composición de widgets                             │
 // └──────────────────────────────────────────────────────────────────┘
-const int paso = 7;
-
+const int paso = 6;
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
     colorScheme:  ColorScheme.fromSeed(
       seedColor:  Colors.deepPurple,          // ← cambia aquí
-      brightness: Brightness.dark,     
+      brightness: Brightness.dark,     // ← Brightness.dark para modo oscuro
     ),
     useMaterial3: true,
   ),
